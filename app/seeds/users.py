@@ -5,14 +5,19 @@ from app.models import db, User, environment, SCHEMA
 def seed_users():
     demo = User(
         username='Demo', email='demo@aa.io', password='password')
-    marnie = User(
-        username='marnie', email='marnie@aa.io', password='password')
-    bobbie = User(
-        username='bobbie', email='bobbie@aa.io', password='password')
-
+    leo = User(
+        username='leo', email='leo@aa.io', password='password')
+    turner = User(
+        username='turner', email='turner@aa.io', password='password')
+    mike = User(
+        username='mike', email='mike@aa.io', password='password')
+    vincent = User(
+        username='vincent', email='vincent@aa.io', password='password')
+    turner = User(
+        username='turner', email='turner@aa.io', password='password')
     db.session.add(demo)
-    db.session.add(marnie)
-    db.session.add(bobbie)
+    db.session.add(leo)
+    db.session.add(turner)
     db.session.commit()
 
 
@@ -27,5 +32,8 @@ def undo_users():
         db.session.execute(f"TRUNCATE table {SCHEMA}.users RESTART IDENTITY CASCADE;")
     else:
         db.session.execute("DELETE FROM users")
-        
+        db.session.execute("DELETE FROM sets")
+        db.session.execute("DELETE FROM set_cards")
+        db.session.execute("DELETE FROM comparisons")
+
     db.session.commit()

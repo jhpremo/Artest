@@ -11,7 +11,7 @@ class Set(db.Model):
     title = db.Column(db.String(75), nullable=False)
 
     user = db.relationship('User', back_populates='sets')
-    cards = db.relationship('SetCard', back_populates='card_set')
+    cards = db.relationship('SetCard', back_populates='card_set', cascade="all, delete-orphan")
 
     def to_dict(self):
         return {
