@@ -100,14 +100,14 @@ const NavBar = () => {
           </button>
         </div>
         <div className='navbar-right-wrapper'>
-          <button onClick={openLogin} className='navbar-login-button'>
+          {!sessionUser && <><button onClick={openLogin} className='navbar-login-button'>
             Login
           </button>
-          <button onClick={openSignup} className='navbar-signup-button'>
-            Sign Up
-          </button>
+            <button onClick={openSignup} className='navbar-signup-button'>
+              Sign Up
+            </button></>}
         </div>
-        <LogoutButton />
+        {sessionUser && <LogoutButton />}
       </div>
     </>
   );
