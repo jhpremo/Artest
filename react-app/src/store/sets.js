@@ -40,7 +40,8 @@ export const getOneSetThunk = (id) => async (dispatch) => {
             return;
         }
         dispatch(getSets(data));
-    }
+        return true
+    } else return false
 }
 
 export default function setsReducer(state = null, action) {

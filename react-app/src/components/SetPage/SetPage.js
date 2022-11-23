@@ -1,11 +1,12 @@
 import { useState } from "react"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { useParams } from "react-router-dom"
+import { useHistory, useParams } from "react-router-dom"
 import { getOneSetThunk } from "../../store/sets"
 
 const SetPage = () => {
     const dispatch = useDispatch()
+    const history = useHistory()
     const [isLoaded, setIsLoaded] = useState(false)
     const { setId } = useParams()
 
@@ -16,7 +17,10 @@ const SetPage = () => {
 
     useEffect(() => {
         if (!set) {
-            dispatch(getOneSetThunk(setId)).then(() => setIsLoaded(true))
+            dispatch(getOneSetThunk(setId)).then((res) => {
+                if (res) setIsLoaded(true)
+                else history.push('/404')
+            })
         } else setIsLoaded(true)
     }, [set])
 
