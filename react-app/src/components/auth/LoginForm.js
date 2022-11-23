@@ -29,7 +29,7 @@ const LoginForm = ({ setToggleLogin }) => {
     if (user) {
       setToggleLogin(false);
     }
-  }, [user])
+  }, [user, setToggleLogin])
 
 
   return (

@@ -41,7 +41,7 @@ const SignUpForm = ({ setToggleSignup }) => {
     if (user) {
       setToggleSignup(false);
     }
-  }, [user])
+  }, [user, setToggleSignup])
 
   return (
     <form onSubmit={onSignUp}>
