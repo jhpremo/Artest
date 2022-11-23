@@ -10,6 +10,8 @@ import User from './components/User';
 import { authenticate } from './store/session';
 import HomePage from './components/HomePage/HomePage';
 import YourSets from './components/YourSets/YourSets';
+import SetCard from './components/sets/SetCard';
+import SetPage from './components/SetPage/SetPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -32,6 +34,9 @@ function App() {
       <Switch>
         <Route path='/your-sets' exact={true}>
           <YourSets />
+        </Route>
+        <Route path='/sets/:setId'>
+          <SetPage />
         </Route>
         <Route path='/' exact={true} >
           <HomePage />

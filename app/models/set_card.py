@@ -23,7 +23,7 @@ class SetCard(db.Model):
             "setId": self.set_id,
             "title": self.title,
             "artist": self.artist,
-            "imageUrl": self.imageUrl,
+            "imageUrl": self.image_url,
             "markerObj": self.marker_obj,
             "notes": self.notes
         }

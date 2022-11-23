@@ -13,7 +13,7 @@ const HomePage = () => {
     }, [dispatch])
 
     let featuredSets = useSelector((state) => {
-        if (isLoaded) return Object.values(state.sets)
+        if (isLoaded && state.sets) return Object.values(state.sets)
         else return []
     })
 

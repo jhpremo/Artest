@@ -31,6 +31,18 @@ export const getSessionSetsThunk = () => async (dispatch) => {
     }
 }
 
+export const getOneSetThunk = (id) => async (dispatch) => {
+    const response = await fetch(`/api/sets/${id}`)
+
+    if (response.ok) {
+        const data = await response.json();
+        if (data.errors) {
+            return;
+        }
+        dispatch(getSets(data));
+    }
+}
+
 export default function setsReducer(state = null, action) {
     switch (action.type) {
         case GET_SETS:

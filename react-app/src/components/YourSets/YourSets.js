@@ -19,7 +19,7 @@ const YourSets = () => {
     }, [dispatch])
 
     let sessionSets = useSelector((state) => {
-        if (isLoaded) return Object.values(state.sets)
+        if (isLoaded && state.sets) return Object.values(state.sets)
         else return []
     })
 
