@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 
-const LoginForm = () => {
+const LoginForm = ({ setToggleLogin }) => {
   const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -26,9 +25,12 @@ const LoginForm = () => {
     setPassword(e.target.value);
   };
 
-  if (user) {
-    return <Redirect to='/' />;
-  }
+  useEffect(() => {
+    if (user) {
+      setToggleLogin(false);
+    }
+  }, [user])
+
 
   return (
     <form onSubmit={onLogin}>

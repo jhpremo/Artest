@@ -1,14 +1,27 @@
 
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import LoginForm from '../auth/LoginForm';
 import "./navbar.css"
+import SignUpForm from '../auth/SignUpForm';
+import { useSelector } from 'react-redux';
 
 const NavBar = () => {
   const [toggleLogin, setToggleLogin] = useState(false)
   const [toggleSignup, setToggleSignup] = useState(false)
+  const [toggleLinkDisable, setToggleLinkDisable] = useState(false)
+
+  let sessionUser = useSelector((state) => state.session.user)
+
+  useEffect(() => {
+    console.log(sessionUser)
+    if (sessionUser) setToggleLinkDisable(false)
+    else setToggleLinkDisable(true)
+  }, [sessionUser])
+
+
   const openLogin = () => {
     if (toggleSignup) {
       setToggleSignup(false)
@@ -28,12 +41,44 @@ const NavBar = () => {
     setToggleSignup(false)
   }
 
+  const manageUserLinks = (e) => {
+    if (toggleLinkDisable) {
+      e.preventDefault()
+      setToggleLogin(true)
+    }
+  }
   return (
     <>
       {toggleLogin && <div className='login-modal'>
-        <div className='login-left'> <span>Artest</span></div>
+        <div className='login-left'> <span>Artest your knowledge</span></div>
         <div className='login-right'>
-          <div onClick={close} className='close-modal-button'><i className="fa-solid fa-x" /></div>
+          <div className='close-modal-button'><i onClick={close} className="fa-solid fa-x" /></div>
+          <div className='login-signup-buttons-wrapper'>
+            <div className='login-signup-wrapper'>
+              <button id='login-active' onClick={openLogin}>Log in</button>
+              <i className="fa-solid fa-paintbrush" />
+            </div>
+            <div className='login-signup-wrapper'>
+              <button onClick={openSignup}>Sign up</button>
+            </div>
+          </div>
+          <LoginForm setToggleLogin={setToggleLogin} />
+        </div>
+      </div>}
+      {toggleSignup && <div className='login-modal'>
+        <div className='login-left'> <span>Artest your knowledge</span></div>
+        <div className='login-right'>
+          <div className='close-modal-button'><i onClick={close} className="fa-solid fa-x" /></div>
+          <div className='login-signup-buttons-wrapper'>
+            <div className='login-signup-wrapper'>
+              <button onClick={openLogin}>Log in</button>
+            </div>
+            <div className='login-signup-wrapper'>
+              <button id='signup-active' onClick={openSignup}>Sign up</button>
+              <i className="fa-solid fa-paintbrush" />
+            </div>
+          </div>
+          <SignUpForm setToggleSignup={setToggleSignup} />
         </div>
       </div>}
       <div className='navbar-wrapper'>
@@ -44,10 +89,10 @@ const NavBar = () => {
           <NavLink to='/' exact={true} activeClassName='active' className="navbar-left-button">
             Home
           </NavLink>
-          <NavLink to="/your-sets" className='navbar-left-button'>
+          <NavLink onClick={manageUserLinks} to="/your-sets" className='navbar-left-button'>
             Your sets
           </NavLink>
-          <NavLink to="/your-comparisons" className='navbar-left-button'>
+          <NavLink onClick={manageUserLinks} to="/your-comparisons" className='navbar-left-button'>
             Your comparisons
           </NavLink>
           <button className='navbar-create-button'>
@@ -62,7 +107,7 @@ const NavBar = () => {
             Sign Up
           </button>
         </div>
-        {/* <LogoutButton /> */}
+        <LogoutButton />
       </div>
     </>
   );
