@@ -16,7 +16,7 @@ const YourSets = () => {
             return
         }
         dispatch(getSessionSetsThunk()).then(() => setIsLoaded(true))
-    }, [dispatch])
+    }, [dispatch, history, user])
 
     let sessionSets = useSelector((state) => {
         if (isLoaded && state.sets) return Object.values(state.sets)

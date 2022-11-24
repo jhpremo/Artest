@@ -1,0 +1,118 @@
+.set-page-wrapper {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.set-page-wrapper>h1 {
+    margin: 0px;
+    padding: 0px;
+    font-size: 25px;
+    align-self: flex-start;
+    width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+}
+
+.set-page-card-wrapper {
+    width: 800px;
+    height: 500px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgb(206, 207, 212);
+    cursor: pointer;
+
+}
+
+.set-page-card-image {
+    max-width: 80%;
+    max-height: 400px;
+    margin-top: 10px;
+    border-radius: 10px;
+}
+
+
+.card-counter {
+    margin-top: 20px;
+    color: rgb(75, 75, 75);
+    font-size: 15px;
+
+}
+
+.set-page-card-info {
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 30px;
+}
+
+.set-page-card-info>h3 {
+    font-size: 30px;
+    font-weight: 500;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.set-page-card-info>h4 {
+    font-size: 25px;
+    font-weight: 500;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.set-page-card-info>h5 {
+    font-size: 20px;
+    font-weight: 500;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.set-page-card-info>p {
+    font-size: 15px;
+    text-align: justify;
+}
+
+.arrow-button-wrapper {
+    margin-top: auto;
+    margin-bottom: 20px;
+}
+
+.arrow-button {
+    width: 200px;
+    background: none;
+    border: rgb(246, 247, 251) 2px solid;
+    color: gray;
+    height: 30px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+
+.arrow-button:hover {
+    border: gray 2px solid;
+}
+
+.progress-bar {
+    height: 2px;
+    width: 800px;
+    box-sizing: border-box;
+    background: lightgray;
+    margin-bottom: 10px;
+}
+
+.progress-bar-inner {
+    height: 1px;
+    background-color: gray;
+    width: 20%;
+}

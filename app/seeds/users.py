@@ -32,6 +32,7 @@ def seed_users():
                     "title": "Mona Lisa",
                     "artist": "Leonardo da Vinci",
                     "display_date": "1503",
+                    "notes": "depicts Italian noblewoman Lisa Gherardini, the wife of Francesco del Giocondo.",
                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/1200px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg",
                 },
                 {
@@ -65,6 +66,13 @@ def seed_users():
             "title": "Renaissance grab bag",
             "cards": [
                 {
+                    "title": "The School of Athens",
+                    "artist": "Raphael",
+                    "display_date": "1509-1511",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg/800px-%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg",
+                    "notes": "depicts a congregation of philosophers, mathematicians, and scientists from Ancient Greece, including Plato, Aristotle, Pythagoras, Archimedes, and Heraclitus."
+                },
+                {
                     "title": "The Lamentation",
                     "artist": "Giotto",
                     "display_date": "1305",
@@ -87,12 +95,6 @@ def seed_users():
                     "artist": "Sandro Botticelli",
                     "display_date": "1484-1486",
                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0b/Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg/400px-Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg"
-                },
-                {
-                    "title": "The School of Athens",
-                    "artist": "Raphael",
-                    "display_date": "1509-1511",
-                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg/800px-%22The_School_of_Athens%22_by_Raffaello_Sanzio_da_Urbino.jpg"
                 }
             ]
         },
@@ -100,6 +102,13 @@ def seed_users():
             "user_id": 3,
             "title": "William Turner oil paintings",
             "cards": [
+                {
+                    "title": "The Slave Ship",
+                    "artist": "J. M. W. Turner",
+                    "display_date": "1840",
+                    "notes": "Turner was possibly moved to paint The Slave Ship after reading about the slave ship Zong in The History and Abolition of the Slave Trade by Thomas Clarkson",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Slave-ship.jpg/800px-Slave-ship.jpg"
+                },
                 {
                     "title": "The Fighting Temeraire",
                     "artist": "J. M. W. Turner",
@@ -113,12 +122,6 @@ def seed_users():
                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Joseph_Mallord_William_Turner%2C_English_-_The_Burning_of_the_Houses_of_Lords_and_Commons%2C_October_16%2C_1834_-_Google_Art_Project.jpg/800px-Joseph_Mallord_William_Turner%2C_English_-_The_Burning_of_the_Houses_of_Lords_and_Commons%2C_October_16%2C_1834_-_Google_Art_Project.jpg"
                 },
                 {
-                    "title": "The Slave Ship",
-                    "artist": "J. M. W. Turner",
-                    "display_date": "1840",
-                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/2/26/Slave-ship.jpg/800px-Slave-ship.jpg"
-                },
-                {
                     "title": "The Ship Wreck",
                     "artist": "J. M. W. Turner",
                     "display_date": "1805",
@@ -128,7 +131,7 @@ def seed_users():
                     "title": "Dido building Carthage",
                     "artist": "J. M. W. Turner",
                     "display_date": "1815",
-                    "image_url": "https://en.wikipedia.org/wiki/Dido_building_Carthage#/media/File:Turner_Dido_Building_Carthage.jpg"
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f4/Turner_Dido_Building_Carthage.jpg/1024px-Turner_Dido_Building_Carthage.jpg"
                 }
             ]
         },
@@ -137,16 +140,17 @@ def seed_users():
             "title": "Romanticism paintings grab bag",
             "cards": [
                 {
-                    "title": "Wanderer above the Sea of Fog",
-                    "artist": "Caspar David Friedrich",
-                    "display_date": "1818",
-                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Caspar_David_Friedrich_-_Wanderer_above_the_sea_of_fog.jpg/800px-Caspar_David_Friedrich_-_Wanderer_above_the_sea_of_fog.jpg"
-                },
-                {
                     "title": "The Lady of Shalott",
                     "artist": "John William Waterhouse",
                     "display_date": "1888",
                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/fd/John_William_Waterhouse_-_The_Lady_of_Shalott_-_Google_Art_Project_edit.jpg/800px-John_William_Waterhouse_-_The_Lady_of_Shalott_-_Google_Art_Project_edit.jpg"
+                },
+                {
+                    "title": "Wanderer above the Sea of Fog",
+                    "artist": "Caspar David Friedrich",
+                    "display_date": "1818",
+                    "notes": "The painting has been widely interpreted as an emblem of self-reflection or contemplation of life's path, and the landscape is widely considered to evoke the sublime.",
+                    "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b9/Caspar_David_Friedrich_-_Wanderer_above_the_sea_of_fog.jpg/800px-Caspar_David_Friedrich_-_Wanderer_above_the_sea_of_fog.jpg"
                 },
                 {
                     "title": "The Savage State",
@@ -194,6 +198,7 @@ def seed_users():
                     "title": "Pieta",
                     "artist": "Michelangelo",
                     "display_date": "1499",
+                    "notes": "This famous work of art depicts the body of Jesus on the lap of his mother Mary after the Crucifixion.",
                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Michelangelo%27s_Pieta_5450_cut_out_black.jpg/800px-Michelangelo%27s_Pieta_5450_cut_out_black.jpg"
                 },
                 {
@@ -218,6 +223,7 @@ def seed_users():
                     "title": "David",
                     "artist": "Donatello",
                     "display_date": "1440s",
+                    "notes": "the first unsupported standing work of bronze cast during the Renaissance, and the first freestanding nude male sculpture made since antiquity.",
                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Florenz_-_Bargello_2014-08-09r.jpg/320px-Florenz_-_Bargello_2014-08-09r.jpg"
                 },
                 {
@@ -272,6 +278,7 @@ def seed_users():
                     "title": "Van Gogh Self Portrait",
                     "artist": "Vincent Van Gogh",
                     "display_date": "1889",
+                    "notes": "This self-portrait was one of about 32 produced over a 10-year period",
                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project.jpg/270px-Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project.jpg"
                 }
             ]
@@ -284,6 +291,7 @@ def seed_users():
                     "title": "A Sunday on La Grande Jatte",
                     "artist": "Georges Seurat",
                     "display_date": "1884",
+                    "notes": "Seurat's composition includes a number of Parisians at a park on the banks of the River Seine.",
                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b7/Georges_Seurat_-_A_Sunday_on_La_Grande_Jatte_--_1884_-_Google_Art_Project.jpg/800px-Georges_Seurat_-_A_Sunday_on_La_Grande_Jatte_--_1884_-_Google_Art_Project.jpg"
                 },
                 {
@@ -326,6 +334,7 @@ def seed_users():
                     "title": "Impression, Sunrise",
                     "artist": "Claude Monet",
                     "display_date": "1872",
+                    "notes": "Impression, Sunrise depicts the port of Le Havre, Monet's hometown. It is now displayed at the Musée Marmottan Monet in Paris.",
                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Monet_-_Impression%2C_Sunrise.jpg/800px-Monet_-_Impression%2C_Sunrise.jpg"
                 },
                 {
@@ -374,6 +383,7 @@ def seed_users():
                     "title": "The Luncheon on the Grass",
                     "artist": "Edouard Manet",
                     "display_date": "1863",
+                    "notes": "The style of the painting breaks with the academic traditions of the time. He did not try to hide the brush strokes; the painting even looks unfinished in some parts of the scene.",
                     "image_url": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Edouard_Manet_-_Luncheon_on_the_Grass_-_Google_Art_Project.jpg/800px-Edouard_Manet_-_Luncheon_on_the_Grass_-_Google_Art_Project.jpg"
                 },
                 {
@@ -397,12 +407,14 @@ def seed_users():
         db.session.add(new_set)
         db.session.commit()
         for card in art_set['cards']:
+            notes = card.get('notes')
             new_card = SetCard(
                 set_id=new_set.id,
                 title=card['title'],
                 artist=card['artist'],
                 image_url=card['image_url'],
-                display_date=card['display_date']
+                display_date=card['display_date'],
+                notes=notes
             )
             db.session.add(new_card)
         db.session.commit()
