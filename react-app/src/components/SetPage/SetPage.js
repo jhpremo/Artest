@@ -14,6 +14,8 @@ const SetPage = () => {
     const [toggleShuffle, setToggleShuffle] = useState(false)
     const [toggleDefaultSide, setToggleDefaultSide] = useState(true)
     const [currentCard, setCurrentCard] = useState(0)
+    const [shuffleId, setShuffleId] = useState("n/a")
+    const [defaultId, setDefaultId] = useState("active-side-button")
     const { setId } = useParams()
 
     let set = useSelector((state) => {
@@ -29,11 +31,14 @@ const SetPage = () => {
             })
         } else setIsLoaded(true)
         setDisplayLst(set?.cards)
-    }, [set])
+    }, [set, dispatch, history, setId])
+
+
 
     const handleLeft = (e) => {
         e.stopPropagation()
-        setTogglePaintingSide(true)
+        if (toggleDefaultSide) setTogglePaintingSide(true)
+        else setTogglePaintingSide(false)
         if (currentCard === 0) setCurrentCard(displayLst.length - 1)
         else setCurrentCard(currentCard - 1)
         console.log(currentCard)
@@ -41,16 +46,35 @@ const SetPage = () => {
 
     const handleRight = (e) => {
         e.stopPropagation()
-        setTogglePaintingSide(true)
+        if (toggleDefaultSide) setTogglePaintingSide(true)
+        else setTogglePaintingSide(false)
         if (currentCard === displayLst.length - 1) setCurrentCard(0)
         else setCurrentCard(currentCard + 1)
     }
-
     const handleShuffle = () => {
+        let shuffledList = [...set.cards]
+        if (!toggleShuffle) {
+            setShuffleId("active-shuffle")
+            for (let i = shuffledList.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1))
+                const placeHolder = shuffledList[i]
+                shuffledList[i] = shuffledList[j]
+                shuffledList[j] = placeHolder
+            }
+        } else setShuffleId("n/a")
+        setDisplayLst(shuffledList)
         setToggleShuffle(!toggleShuffle)
     }
 
     const handleDefaultSide = () => {
+        if (!toggleDefaultSide) {
+            setDefaultId('active-side-button')
+            setTogglePaintingSide(true)
+        } else {
+            setDefaultId('n/a')
+            setTogglePaintingSide(false)
+        }
+
         setToggleDefaultSide(!toggleDefaultSide)
     }
 
@@ -66,6 +90,7 @@ const SetPage = () => {
                     {togglePaintingSide &&
                         <img
                             className="set-page-card-image"
+                            alt={displayLst[currentCard].title}
                             src={displayLst[currentCard].imageUrl}
                             onError={e => {
                                 e.target.src = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930"
@@ -88,9 +113,34 @@ const SetPage = () => {
                 <div className="below-card-wrapper">
                     <p>Created by {set.username}</p>
                     <div className='set-options-button-wrapper'>
-                        <button onClick={handleShuffle} id={toggleShuffle && "active-shuffle"}><i className="fa-solid fa-shuffle" /></button>
-                        <button onClick={handleDefaultSide} id={toggleDefaultSide && "active-side-button"}><i className="fa-regular fa-image" /></button>
+                        <button onClick={handleShuffle} id={shuffleId}><i className="fa-solid fa-shuffle" /></button>
+                        <button onClick={handleDefaultSide} id={defaultId}><i className="fa-regular fa-image" /></button>
                     </div>
+                </div>
+                <div className="cards-list-wrapper">
+                    {set.cards.map(card => {
+                        return (
+                            <div className="cards-list-card">
+                                <div className='cards-list-card-left'>
+                                    <p>{card.title}</p>
+                                    <p>{card.displayDate}</p>
+                                    <p>{card.artist}</p>
+                                    {card.notes !== null && <p> Notes: {card.notes}</p>}
+                                </div>
+                                <div className='cards-list-card-right'>
+                                    <img
+                                        className="set-page-card-list-image"
+                                        alt={card.title}
+                                        src={card.imageUrl}
+                                        onError={e => {
+                                            e.target.src = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930"
+                                            e.onerror = null
+                                        }}
+                                    ></img>
+                                </div>
+                            </div>
+                        )
+                    })}
                 </div>
             </div>}
         </>
