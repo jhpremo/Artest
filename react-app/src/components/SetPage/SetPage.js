@@ -11,6 +11,8 @@ const SetPage = () => {
     const [isLoaded, setIsLoaded] = useState(false)
     const [displayLst, setDisplayLst] = useState([])
     const [togglePaintingSide, setTogglePaintingSide] = useState(true)
+    const [toggleShuffle, setToggleShuffle] = useState(false)
+    const [toggleDefaultSide, setToggleDefaultSide] = useState(true)
     const [currentCard, setCurrentCard] = useState(0)
     const { setId } = useParams()
 
@@ -44,6 +46,14 @@ const SetPage = () => {
         else setCurrentCard(currentCard + 1)
     }
 
+    const handleShuffle = () => {
+        setToggleShuffle(!toggleShuffle)
+    }
+
+    const handleDefaultSide = () => {
+        setToggleDefaultSide(!toggleDefaultSide)
+    }
+
     return (
         <>
             {isLoaded && <div className="set-page-wrapper">
@@ -71,8 +81,15 @@ const SetPage = () => {
                         </div>
                     }
                     <div className="arrow-button-wrapper">
-                        <button className="arrow-button" onClick={handleLeft}><i className="fa-solid fa-left-long" /></button>
-                        <button className="arrow-button" onClick={handleRight}><i className="fa-solid fa-right-long" /></button>
+                        <button className="arrow-button" onClick={handleLeft}><i className="fa-solid fa-angle-left" /></button>
+                        <button className="arrow-button" onClick={handleRight}><i className="fa-solid fa-angle-right" /></button>
+                    </div>
+                </div>
+                <div className="below-card-wrapper">
+                    <p>Created by {set.username}</p>
+                    <div className='set-options-button-wrapper'>
+                        <button onClick={handleShuffle} id={toggleShuffle && "active-shuffle"}><i className="fa-solid fa-shuffle" /></button>
+                        <button onClick={handleDefaultSide} id={toggleDefaultSide && "active-side-button"}><i className="fa-regular fa-image" /></button>
                     </div>
                 </div>
             </div>}
