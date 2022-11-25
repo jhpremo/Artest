@@ -82,41 +82,42 @@ const SetPage = () => {
         <>
             {isLoaded && <div className="set-page-wrapper">
                 <h1>{set.title}</h1>
-                <div className="progress-bar">
-                    <div className="progress-bar-inner" style={{ width: `${((currentCard + 1) / displayLst.length) * 100}%` }}></div>
-                </div>
-                <div onClick={() => setTogglePaintingSide(!togglePaintingSide)} className='set-page-card-wrapper'>
-                    <div className="card-counter">{currentCard + 1} / {displayLst.length}</div>
-                    {togglePaintingSide &&
-                        <img
-                            className="set-page-card-image"
-                            alt={displayLst[currentCard].title}
-                            src={displayLst[currentCard].imageUrl}
-                            onError={e => {
-                                e.target.src = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930"
-                                e.onerror = null
-                            }}
-                        ></img>}
-                    {!togglePaintingSide &&
-                        <div className="set-page-card-info">
-                            <h3>{displayLst[currentCard].title}</h3>
-                            <h4>{displayLst[currentCard].artist}</h4>
-                            <h5>{displayLst[currentCard].displayDate}</h5>
-                            {displayLst[currentCard].notes !== null && <p> Notes: {displayLst[currentCard].notes}</p>}
+                {displayLst.length > 0 && <>
+                    <div className="progress-bar">
+                        <div className="progress-bar-inner" style={{ width: `${((currentCard + 1) / displayLst.length) * 100}%` }}></div>
+                    </div>
+                    <div onClick={() => setTogglePaintingSide(!togglePaintingSide)} className='set-page-card-wrapper'>
+                        <div className="card-counter">{currentCard + 1} / {displayLst.length}</div>
+                        {togglePaintingSide &&
+                            <img
+                                className="set-page-card-image"
+                                alt={displayLst[currentCard].title}
+                                src={displayLst[currentCard].imageUrl}
+                                onError={e => {
+                                    e.target.src = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930"
+                                    e.onerror = null
+                                }}
+                            ></img>}
+                        {!togglePaintingSide &&
+                            <div className="set-page-card-info">
+                                <h3>{displayLst[currentCard].title}</h3>
+                                <h4>{displayLst[currentCard].artist}</h4>
+                                <h5>{displayLst[currentCard].displayDate}</h5>
+                                {displayLst[currentCard].notes !== null && <p> Notes: {displayLst[currentCard].notes}</p>}
+                            </div>
+                        }
+                        <div className="arrow-button-wrapper">
+                            <button className="arrow-button" onClick={handleLeft}><i className="fa-solid fa-angle-left" /></button>
+                            <button className="arrow-button" onClick={handleRight}><i className="fa-solid fa-angle-right" /></button>
                         </div>
-                    }
-                    <div className="arrow-button-wrapper">
-                        <button className="arrow-button" onClick={handleLeft}><i className="fa-solid fa-angle-left" /></button>
-                        <button className="arrow-button" onClick={handleRight}><i className="fa-solid fa-angle-right" /></button>
                     </div>
-                </div>
-                <div className="below-card-wrapper">
-                    <p>Created by {set.username}</p>
-                    <div className='set-options-button-wrapper'>
-                        <button onClick={handleShuffle} id={shuffleId}><i className="fa-solid fa-shuffle" /></button>
-                        <button onClick={handleDefaultSide} id={defaultId}><i className="fa-regular fa-image" /></button>
-                    </div>
-                </div>
+                    <div className="below-card-wrapper">
+                        <p>Created by {set.username}</p>
+                        <div className='set-options-button-wrapper'>
+                            <button onClick={handleShuffle} id={shuffleId}><i className="fa-solid fa-shuffle" /></button>
+                            <button onClick={handleDefaultSide} id={defaultId}><i className="fa-regular fa-image" /></button>
+                        </div>
+                    </div></>}
                 <div className="cards-list-wrapper">
                     {set.cards.map(card => {
                         return (
