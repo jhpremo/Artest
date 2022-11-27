@@ -6,6 +6,7 @@ import { authenticate } from './store/session';
 import HomePage from './components/HomePage/HomePage';
 import YourSets from './components/YourSets/YourSets';
 import SetPage from './components/SetPage/SetPage';
+import NewSetPage from './components/NewSet/NewSetPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -28,6 +29,9 @@ function App() {
       <Switch>
         <Route path='/your-sets' exact={true}>
           <YourSets />
+        </Route>
+        <Route path='/create-set' exact={true}>
+          <NewSetPage />
         </Route>
         <Route path='/sets/:setId'>
           <SetPage />

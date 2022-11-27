@@ -2,10 +2,12 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
 import setsReducer from './sets';
+import setFormReducer from './setForm';
 
 const rootReducer = combineReducers({
   session,
-  sets: setsReducer
+  sets: setsReducer,
+  setForm: setFormReducer
 });
 
 

@@ -3,6 +3,7 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
 import { getOneSetThunk } from "../../store/sets"
+import NewCard from "../NewSet/NewCard"
 import "./set-page.css"
 
 const SetPage = () => {
@@ -17,6 +18,7 @@ const SetPage = () => {
     const [shuffleId, setShuffleId] = useState("n/a")
     const [defaultId, setDefaultId] = useState("active-side-button")
     const { setId } = useParams()
+    const user = useSelector((state) => state.session.user)
 
     let set = useSelector((state) => {
         if (state.sets) return state.sets[setId]
