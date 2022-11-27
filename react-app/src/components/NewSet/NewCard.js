@@ -9,8 +9,7 @@ const NewCard = ({ index }) => {
     const [displayDate, setDisplayDate] = useState('')
     const [url, setUrl] = useState('')
     const [notes, setNotes] = useState('')
-    const [errors, setErrors] = useState([]);
-    const [showErrors, setShowErrors] = useState(false)
+    const [disableDelete, setDisableDelete] = useState(false)
 
     const cards = useSelector((state) => state.setForm)
 
@@ -27,15 +26,28 @@ const NewCard = ({ index }) => {
 
     }, [title, artist, displayDate, url, notes, index, dispatch])
 
+    useEffect(() => {
+        setTitle(cards[index].title)
+        setArtist(cards[index].artist)
+        setDisplayDate(cards[index].displayDate)
+        setUrl(cards[index].url)
+        setNotes(cards[index].notes)
+
+        if (cards.length > 2) setDisableDelete(false)
+        else setDisableDelete(true)
+
+    }, [cards.length])
+
     const deleteCard = () => {
-        dispatch(formDeleteCard(index))
+        if (cards.length > 2) dispatch(formDeleteCard(index))
     }
+
 
 
     return (
         <div className="cards-list-card">
             <div className='cards-list-card-left'>
-                <div><div>{index}</div> <button type="button" onClick={deleteCard}>trash</button> </div>
+                <div><div>{index}</div> <button type="button" disabled={disableDelete} onClick={deleteCard}>trash</button> </div>
                 <div className="new-card-input-wrapper">
                     <label >
                         Title
