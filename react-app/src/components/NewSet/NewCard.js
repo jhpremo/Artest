@@ -47,7 +47,7 @@ const NewCard = ({ index }) => {
     return (
         <div className="cards-list-card">
             <div className='cards-list-card-left'>
-                <div><div>{index}</div> <button type="button" disabled={disableDelete} onClick={deleteCard}>trash</button> </div>
+                <div><div>{index + 1}</div> <button type="button" disabled={disableDelete} onClick={deleteCard}>trash</button> </div>
                 <div className="new-card-input-wrapper">
                     <label >
                         Title
@@ -101,6 +101,7 @@ const NewCard = ({ index }) => {
                     <textarea
                         onChange={e => setNotes(e.target.value)}
                         value={notes}
+                        maxLength={1000}
                     />
                 </div>
             </div>
