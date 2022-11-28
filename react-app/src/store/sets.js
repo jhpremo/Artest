@@ -44,6 +44,14 @@ export const getOneSetThunk = (id) => async (dispatch) => {
     } else return false
 }
 
+const CLEAR_SETS = "/sets/clear/all"
+
+export const clearSets = () => {
+    return {
+        type: CLEAR_SETS
+    }
+}
+
 export default function setsReducer(state = null, action) {
     switch (action.type) {
         case GET_SETS:
@@ -53,6 +61,8 @@ export default function setsReducer(state = null, action) {
             }
             console.log(getSetsState)
             return getSetsState
+        case CLEAR_SETS:
+            return null
         default:
             return state;
     }

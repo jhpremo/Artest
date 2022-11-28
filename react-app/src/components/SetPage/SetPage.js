@@ -3,7 +3,6 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory, useParams } from "react-router-dom"
 import { getOneSetThunk } from "../../store/sets"
-import NewCard from "../NewSet/NewCard"
 import "./set-page.css"
 
 const SetPage = () => {
@@ -80,10 +79,33 @@ const SetPage = () => {
         setToggleDefaultSide(!toggleDefaultSide)
     }
 
+    const handleDeleteSet = async () => {
+        if (
+            window.confirm(
+                `This will delete ${set.title} and all associated cards`
+            )
+        ) {
+            await fetch(`/api/sets/${set.id}`, {
+                method: "DELETE"
+            })
+            history.push('/your-sets')
+        }
+    }
+
+    const handleEditSet = () => {
+        history.push(`/sets/${set.id}/edit`)
+    }
+
     return (
         <>
             {isLoaded && <div className="set-page-wrapper">
-                <h1>{set.title}</h1>
+                <div className="set-page-top-bar">
+                    <h1>{set.title}</h1>
+                    {user.id === set.userId && <div className="set-page-top-bar-buttons">
+                        <button onClick={handleEditSet}>edit</button>
+                        <button onClick={handleDeleteSet}>delete</button>
+                    </div>}
+                </div>
                 {displayLst.length > 0 && <>
                     <div className="progress-bar">
                         <div className="progress-bar-inner" style={{ width: `${((currentCard + 1) / displayLst.length) * 100}%` }}></div>

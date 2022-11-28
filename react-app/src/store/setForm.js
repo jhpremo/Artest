@@ -8,6 +8,15 @@ export const updateListItem = (cardObj, index) => {
     }
 }
 
+const LOAD_SET = 'edit/set/list/form'
+
+export const loadEditList = (set) => {
+    return {
+        type: LOAD_SET,
+        set
+    }
+}
+
 const ADD_SET_CARD = 'update/set/list/form/add/card'
 
 export const formAddCard = () => {
@@ -85,6 +94,8 @@ export default function setFormReducer(state = initialState, action) {
             let deleteState = [...state]
             deleteState.splice(action.index, 1)
             return deleteState
+        case LOAD_SET:
+            return [...action.set]
         case RESET_SET_FORM:
             let resetState = [...initialState]
             return resetState

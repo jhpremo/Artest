@@ -7,6 +7,7 @@ import HomePage from './components/HomePage/HomePage';
 import YourSets from './components/YourSets/YourSets';
 import SetPage from './components/SetPage/SetPage';
 import NewSetPage from './components/NewSet/NewSetPage';
+import EditSetPage from './components/NewSet/EditSetPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -33,8 +34,11 @@ function App() {
         <Route path='/create-set' exact={true}>
           <NewSetPage />
         </Route>
-        <Route path='/sets/:setId'>
+        <Route exact={true} path='/sets/:setId'>
           <SetPage />
+        </Route>
+        <Route exact={true} path='/sets/:setId/edit'>
+          <EditSetPage />
         </Route>
         <Route path='/' exact={true} >
           <HomePage />
