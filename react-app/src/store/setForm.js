@@ -26,6 +26,15 @@ export const formDeleteCard = (index) => {
         index: index
     }
 }
+
+const RESET_SET_FORM = 'set/form/reset'
+
+export const formReset = () => {
+    return {
+        type: RESET_SET_FORM
+    }
+}
+
 let initialState = [
     {
         title: '',
@@ -76,6 +85,9 @@ export default function setFormReducer(state = initialState, action) {
             let deleteState = [...state]
             deleteState.splice(action.index, 1)
             return deleteState
+        case RESET_SET_FORM:
+            let resetState = [...initialState]
+            return resetState
         default:
             return state;
     }

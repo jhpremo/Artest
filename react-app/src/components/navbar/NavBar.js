@@ -123,7 +123,8 @@ const NavBar = () => {
               Create <i className="fa-solid fa-chevron-down" />
             </button>
             <div className={dropDownClass}>
-              <NavLink onClick={manageUserLinks} to="/create-set">New Set</NavLink>
+              <NavLink onClick={manageUserLinks} activeClassName='n/a' className="drop-down_nav" to="/create-set"> <i className="fa-solid fa-layer-group" /> Set</NavLink>
+              <NavLink onClick={manageUserLinks} activeClassName='n/a' className="drop-down_nav" to="/create-comparison"> <i className="fa-solid fa-table-columns" /> Comparison</NavLink>
             </div>
           </div>
         </div>

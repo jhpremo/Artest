@@ -173,12 +173,21 @@
     background: none;
     border: none;
     color: rgb(147, 155, 186);
+    cursor: pointer;
+}
+
+.card-num-wrapper>button:disabled {
+    cursor: default;
+    color: rgb(239, 241, 247);
 }
 
 .card-num-wrapper>button:hover {
     color: rgb(255, 205, 33);
 }
 
+.card-num-wrapper>button:hover:disabled {
+    color: rgb(239, 241, 247);
+}
 
 .form-add-card-button {
     border: none;

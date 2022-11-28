@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
-import { formAddCard } from "../../store/setForm"
+import { formAddCard, formReset } from "../../store/setForm"
 import NewCard from "./NewCard"
 import "./new-set.css"
 
@@ -73,6 +73,7 @@ const NewSetPage = () => {
                     })
                 })
             }
+            await dispatch(formReset())
             history.push(`/sets/${set.id}`)
         }
     }
