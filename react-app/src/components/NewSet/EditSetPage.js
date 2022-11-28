@@ -27,6 +27,7 @@ const EditSetPage = () => {
                 else history.push('/404')
             })
         } else {
+            dispatch(formReset())
             setSetTitle(set.title)
             dispatch(loadEditList(set.cards))
             setIsLoaded(true)
@@ -157,7 +158,7 @@ const EditSetPage = () => {
                 {cards.map((card, i) => <EditCard index={i} isLoaded={isLoaded} />)}
 
                 <button type="button" onClick={addCard} className='form-add-card-button'>+ Add Card</button>
-                <button className="form-submit-button">Create</button>
+                <button className="form-submit-button">Done</button>
             </form>
         </div>}
         </>

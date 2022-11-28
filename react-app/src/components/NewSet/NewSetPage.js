@@ -11,6 +11,12 @@ const NewSetPage = () => {
     const cards = useSelector((state) => state.setForm)
     const history = useHistory()
     const dispatch = useDispatch()
+    const [isLoaded, setIsLoaded] = useState(false)
+
+    useEffect(() => {
+        dispatch(formReset())
+        setIsLoaded(true)
+    }, [])
 
     const user = useSelector((state) => state.session.user)
     useEffect(() => {
@@ -79,31 +85,33 @@ const NewSetPage = () => {
     }
 
     return (
-        <div className="new-set-page-wrapper">
-            <h2>Create a new art set</h2>
-            <form onSubmit={handleSubmit} className="new-set-form">
-                {errors.length > 0 && <ul className="form-errors">
-                    {errors.map((error, idx) => <li key={idx}>{error}</li>)}
-                </ul>}
-                <div className="new-set-input-wrapper">
-                    <input
-                        type="text"
-                        className="create-form-input"
-                        value={setTitle}
-                        onChange={(e) => setSetTitle(e.target.value)}
-                        required
-                        maxLength={75}
-                    />
-                    <span className="create-form-label">
-                        Set title
-                    </span>
-                </div>
-                {cards.map((card, i) => <NewCard index={i} />)}
+        <>
+            {isLoaded && <div className="new-set-page-wrapper">
+                <h2>Create a new art set</h2>
+                <form onSubmit={handleSubmit} className="new-set-form">
+                    {errors.length > 0 && <ul className="form-errors">
+                        {errors.map((error, idx) => <li key={idx}>{error}</li>)}
+                    </ul>}
+                    <div className="new-set-input-wrapper">
+                        <input
+                            type="text"
+                            className="create-form-input"
+                            value={setTitle}
+                            onChange={(e) => setSetTitle(e.target.value)}
+                            required
+                            maxLength={75}
+                        />
+                        <span className="create-form-label">
+                            Set title
+                        </span>
+                    </div>
+                    {cards.map((card, i) => <NewCard index={i} />)}
 
-                <button type="button" onClick={addCard} className='form-add-card-button'>+ Add Card</button>
-                <button className="form-submit-button">Create</button>
-            </form>
-        </div>
+                    <button type="button" onClick={addCard} className='form-add-card-button'>+ Add Card</button>
+                    <button className="form-submit-button">Create</button>
+                </form>
+            </div>}
+        </>
     )
 }
 
