@@ -101,7 +101,7 @@ const SetPage = () => {
             {isLoaded && <div className="set-page-wrapper">
                 <div className="set-page-top-bar">
                     <h1>{set.title}</h1>
-                    {user.id === set.userId && <div className="set-page-top-bar-buttons">
+                    {user?.id === set.userId && <div className="set-page-top-bar-buttons">
                         <button onClick={handleEditSet}>edit</button>
                         <button onClick={handleDeleteSet}>delete</button>
                     </div>}
