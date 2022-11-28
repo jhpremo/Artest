@@ -45,76 +45,86 @@ const NewCard = ({ index }) => {
 
 
     return (
-        <div className="cards-list-card">
-            <div className='cards-list-card-left'>
-                <div><div>{index + 1}</div> <button type="button" disabled={disableDelete} onClick={deleteCard}>trash</button> </div>
-                <div className="new-card-input-wrapper">
-                    <label >
-                        Title
-                    </label>
-                    <input
-                        type="text"
-                        value={title}
-                        onChange={(e) => setTitle(e.target.value)}
-                        required
-                        maxLength={75}
-                    />
+        <div className="form-cards-list-card-wrapper">
+            <div className="card-num-wrapper"><div>{index + 1}</div> <button type="button" disabled={disableDelete} onClick={deleteCard}><i className="fa-solid fa-trash-can" /></button> </div>
+            <div className="form-cards-list-card">
+                <div className='form-cards-list-card-left'>
+                    <div className="new-card-input-wrapper">
+                        <input
+                            type="text"
+                            className="create-form-card-input"
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)}
+                            required
+                            maxLength={75}
+                        />
+                        <span className="create-form-card-label">
+                            Title
+                        </span>
+                    </div>
+                    <div className="new-card-input-wrapper">
+                        <input
+                            type="text"
+                            className="create-form-card-input"
+                            value={artist}
+                            onChange={(e) => setArtist(e.target.value)}
+                            required
+                            maxLength={75}
+                        />
+                        <span className="create-form-card-label">
+                            Artist name
+                        </span>
+                    </div>
+                    <div className="new-card-input-wrapper">
+                        <input
+                            type="text"
+                            className="create-form-card-input"
+                            value={displayDate}
+                            onChange={(e) => setDisplayDate(e.target.value)}
+                            required
+                            maxLength={50}
+                        />
+                        <span className="create-form-card-label">
+                            Date
+                        </span>
+                    </div>
+                    <div className="new-card-input-wrapper">
+                        <input
+                            type="text"
+                            className="create-form-card-input"
+                            value={url}
+                            onChange={(e) => setUrl(e.target.value)}
+                            required
+                            maxLength={2048}
+                        />
+                        <span className="create-form-card-label">
+                            Image url
+                        </span>
+                    </div>
+                    <div className="new-card-input-wrapper">
+                        <textarea
+                            className="create-form-card-input-text-area"
+                            onChange={e => setNotes(e.target.value)}
+                            value={notes}
+                            minLength={1}
+                            maxLength={1000}
+                        />
+                        <span className="create-form-card-label">
+                            Notes
+                        </span>
+                    </div>
                 </div>
-                <div className="new-card-input-wrapper">
-                    <label >
-                        Artist
-                    </label>
-                    <input
-                        type="text"
-                        value={artist}
-                        onChange={(e) => setArtist(e.target.value)}
-                        required
-                        maxLength={75}
-                    />
+                <div className='form-cards-list-card-right'>
+                    <img
+                        className="form-set-page-card-list-image"
+                        alt={title}
+                        src={url}
+                        onError={e => {
+                            e.target.src = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930"
+                            e.onerror = null
+                        }}
+                    ></img>
                 </div>
-                <div className="new-card-input-wrapper">
-                    <label >
-                        Date
-                    </label>
-                    <input
-                        type="text"
-                        value={displayDate}
-                        onChange={(e) => setDisplayDate(e.target.value)}
-                        required
-                        maxLength={50}
-                    />
-                </div>
-                <div className="new-card-input-wrapper">
-                    <label >
-                        Image url
-                    </label>
-                    <input
-                        type="text"
-                        value={url}
-                        onChange={(e) => setUrl(e.target.value)}
-                        required
-                        maxLength={2048}
-                    />
-                </div>
-                <div>
-                    <label>Notes</label>
-                    <textarea
-                        onChange={e => setNotes(e.target.value)}
-                        value={notes}
-                        maxLength={1000}
-                    />
-                </div>
-            </div>
-            <div className='cards-list-card-right'>
-                <img
-                    className="set-page-card-list-image"
-                    alt={title}
-                    src={url}
-                    onError={e => {
-                        e.target.src = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930"
-                        e.onerror = null
-                    }}
-                ></img>
             </div>
         </div>
     )

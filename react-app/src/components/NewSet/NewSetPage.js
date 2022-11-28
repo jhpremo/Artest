@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { formAddCard } from "../../store/setForm"
 import NewCard from "./NewCard"
+import "./new-set.css"
 
 const NewSetPage = () => {
     const [setTitle, setSetTitle] = useState('')
@@ -10,6 +11,14 @@ const NewSetPage = () => {
     const cards = useSelector((state) => state.setForm)
     const history = useHistory()
     const dispatch = useDispatch()
+
+    const user = useSelector((state) => state.session.user)
+    useEffect(() => {
+        if (!user) {
+            history.push('/')
+            return
+        }
+    }, [history, user])
 
     const addCard = () => {
         dispatch(formAddCard())
@@ -71,26 +80,27 @@ const NewSetPage = () => {
     return (
         <div className="new-set-page-wrapper">
             <h2>Create a new art set</h2>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="new-set-form">
                 {errors.length > 0 && <ul className="form-errors">
                     {errors.map((error, idx) => <li key={idx}>{error}</li>)}
                 </ul>}
-                <div className="new-set-title-wrapper">
-                    <label >
-                        Set title
-                    </label>
+                <div className="new-set-input-wrapper">
                     <input
                         type="text"
+                        className="create-form-input"
                         value={setTitle}
                         onChange={(e) => setSetTitle(e.target.value)}
                         required
                         maxLength={75}
                     />
+                    <span className="create-form-label">
+                        Set title
+                    </span>
                 </div>
                 {cards.map((card, i) => <NewCard index={i} />)}
 
-                <button type="button" onClick={addCard} >Add card</button>
-                <button>Create</button>
+                <button type="button" onClick={addCard} className='form-add-card-button'>+ Add Card</button>
+                <button className="form-submit-button">Create</button>
             </form>
         </div>
     )

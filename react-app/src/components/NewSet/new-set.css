@@ -1,0 +1,223 @@
+.new-set-page-wrapper {
+    margin-right: auto;
+    margin-left: auto;
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.new-set-form {
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.new-set-input-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.new-set-input-wrapper .create-form-input:focus {
+    border-bottom: 2px rgb(88, 99, 128) solid;
+}
+
+.create-form-input {
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    border-radius: 5px;
+    height: 40px;
+    box-shadow: 0px 0px 2px rgb(88, 99, 128);
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 12px;
+    font-size: 18px;
+
+}
+
+.create-form-label {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    font-size: 15px;
+    color: rgb(147, 155, 186);
+    transition: 0.2s ease all;
+}
+
+.new-set-input-wrapper input:focus~.create-form-label,
+.new-set-input-wrapper input:not(:focus):valid~.create-form-label {
+    top: 0px;
+    left: 10px;
+    font-size: 12px
+}
+
+.new-card-input-wrapper {
+    position: relative;
+    width: 100%;
+    margin-bottom: 10px;
+
+}
+
+.new-card-input-wrapper .create-form-card-input:focus {
+    border-bottom: 2px rgb(255, 205, 33) solid;
+}
+
+.create-form-card-input {
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    height: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 12px;
+    font-size: 15px;
+    border-bottom: 2px rgb(88, 99, 128) solid;
+}
+
+.create-form-card-input-text-area {
+    width: 100%;
+    box-sizing: border-box;
+    outline: none;
+    border: none;
+    height: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-top: 25px;
+    font-size: 15px;
+    border-bottom: 2px rgb(147, 155, 186) solid;
+    resize: none;
+}
+
+
+.new-card-input-wrapper .create-form-card-input-text-area:focus {
+    border-bottom: 2px rgb(255, 205, 33) solid;
+}
+
+.create-form-card-label {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    font-size: 15px;
+    color: rgb(147, 155, 186);
+    transition: 0.2s ease all;
+    pointer-events: none;
+    background: white;
+}
+
+.new-card-input-wrapper input:focus~.create-form-card-label,
+.new-card-input-wrapper input:not(:focus):valid~.create-form-card-label {
+    top: 0px;
+    left: 10px;
+    font-size: 8px
+}
+
+
+
+.form-cards-list-card {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+}
+
+.form-cards-list-card-wrapper {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    background: white;
+    box-sizing: border-box;
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgb(206, 207, 212);
+    transition: 0.2s ease all;
+}
+
+.form-set-page-card-list-image {
+    max-width: 100%;
+    max-height: 200px;
+}
+
+.form-cards-list-card-left {
+    width: 70%;
+    box-sizing: border-box;
+    padding-right: 10px;
+}
+
+.form-cards-list-card-right {
+    width: 30%;
+    box-sizing: border-box;
+    padding-left: 10px;
+    border-left: 1px solid lightgray;
+    align-self: center;
+    display: flex;
+    justify-content: center;
+}
+
+.card-num-wrapper {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(147, 155, 186);
+    padding-bottom: 5px;
+    margin-bottom: 5px;
+    color: rgb(147, 155, 186);
+}
+
+.card-num-wrapper>button {
+    background: none;
+    border: none;
+    color: rgb(147, 155, 186);
+}
+
+.card-num-wrapper>button:hover {
+    color: rgb(255, 205, 33);
+}
+
+
+.form-add-card-button {
+    border: none;
+    background: white;
+    box-shadow: 0px 2px 5px rgb(206, 207, 212);
+    height: 100px;
+    font-size: 18px;
+    text-decoration: underline 5px;
+    text-underline-offset: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration-color: rgb(59, 207, 207);
+    transition: 0.2s ease all;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.form-add-card-button:hover {
+    text-decoration-color: rgb(255, 205, 33);
+    color: rgb(255, 205, 33);
+}
+
+.form-submit-button {
+    background-color: rgb(66, 85, 253);
+    color: white;
+    width: 10%;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    align-self: flex-end;
+    margin-bottom: 20px;
+}
+
+.form-submit-button:hover {
+    background-color: rgb(54, 69, 203);
+}
+
+.new-set-page-wrapper>h2 {
+    font-size: 20px;
+}
