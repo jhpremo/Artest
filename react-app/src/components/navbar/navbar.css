@@ -197,3 +197,27 @@
     font-size: 25px;
     transform: rotate(-70deg) scaleX(-1);
 }
+
+
+.navbar-create-dropdown-wrapper {
+    background: white;
+    z-index: 500;
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 8px;
+
+}
+
+.navbar-create-dropdown-wrapper>NavLink {
+    text-decoration: none;
+}
+
+.navbar-hidden {
+    display: none;
+}
+
+.create-button-wrapper-nav {
+    position: relative;
+}

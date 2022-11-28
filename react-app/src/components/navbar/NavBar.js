@@ -12,8 +12,31 @@ const NavBar = () => {
   const [toggleLogin, setToggleLogin] = useState(false)
   const [toggleSignup, setToggleSignup] = useState(false)
   const [toggleLinkDisable, setToggleLinkDisable] = useState(false)
+  const [toggleDropDown, setToggleDropDown] = useState(false)
 
   let sessionUser = useSelector((state) => state.session.user)
+
+  const openDropDown = () => {
+    if (toggleDropDown) return;
+    setToggleDropDown(true);
+  };
+
+  useEffect(() => {
+    if (!toggleDropDown) return;
+
+    const closeDropDown = () => {
+      setToggleDropDown(false);
+    };
+
+    document.addEventListener('click', closeDropDown);
+
+    return () => document.removeEventListener("click", closeDropDown);
+  }, [toggleDropDown]);
+
+  let dropDownClass
+  if (toggleDropDown) {
+    dropDownClass = "navbar-create-dropdown-wrapper"
+  } else dropDownClass = 'navbar-hidden'
 
   useEffect(() => {
     console.log(sessionUser)
@@ -95,9 +118,14 @@ const NavBar = () => {
           <NavLink onClick={manageUserLinks} to="/your-comparisons" className='navbar-left-button'>
             Your comparisons
           </NavLink>
-          <button className='navbar-create-button'>
-            Create <i className="fa-solid fa-chevron-down" />
-          </button>
+          <div className='create-button-wrapper-nav'>
+            <button className='navbar-create-button' onClick={openDropDown}>
+              Create <i className="fa-solid fa-chevron-down" />
+            </button>
+            <div className={dropDownClass}>
+              <NavLink onClick={manageUserLinks} to="/create-set">New Set</NavLink>
+            </div>
+          </div>
         </div>
         <div className='navbar-right-wrapper'>
           {!sessionUser && <><button onClick={openLogin} className='navbar-login-button'>
