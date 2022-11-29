@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session'
 import setsReducer from './sets';
 import setFormReducer from './setForm';
+import compsReducer from './comparisons';
 
 const rootReducer = combineReducers({
   session,
   sets: setsReducer,
-  setForm: setFormReducer
+  setForm: setFormReducer,
+  comparisons: compsReducer
 });
 
 

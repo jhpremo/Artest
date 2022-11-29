@@ -1,6 +1,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { getFeaturedCompsThunk } from '../../store/comparisons';
 import { getFeaturedSetsThunk } from '../../store/sets';
 import SetCard from "../sets/SetCard"
 import "./homepage.css"
@@ -9,7 +10,7 @@ const HomePage = () => {
     const [isLoaded, setIsLoaded] = useState(false)
 
     useEffect(() => {
-        dispatch(getFeaturedSetsThunk()).then(() => setIsLoaded(true))
+        dispatch(getFeaturedSetsThunk()).then(() => dispatch(getFeaturedCompsThunk())).then(() => setIsLoaded(true))
     }, [dispatch])
 
     let featuredSets = useSelector((state) => {
@@ -23,6 +24,10 @@ const HomePage = () => {
                 <h2>Featured sets</h2>
                 <div className='homepage-setcards-wrapper'>
                     {featuredSets?.map((set) => <SetCard set={set} key={set.id} />)}
+                </div>
+                <h2>Featured comparisons</h2>
+                <div className='homepage-comparisons-wrapper'>
+
                 </div>
             </div>}
         </>

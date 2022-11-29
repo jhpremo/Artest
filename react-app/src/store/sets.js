@@ -59,7 +59,6 @@ export default function setsReducer(state = null, action) {
             for (let i = 0; i < action.sets.length; i++) {
                 getSetsState[action.sets[i].id] = action.sets[i]
             }
-            console.log(getSetsState)
             return getSetsState
         case CLEAR_SETS:
             return null
