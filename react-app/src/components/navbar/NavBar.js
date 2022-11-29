@@ -90,7 +90,7 @@ const NavBar = () => {
       </div>}
       {toggleSignup && <div className='login-modal'>
         <div className='login-left'> <span>Artest your knowledge</span></div>
-        <div className='login-right'>\
+        <div className='login-right'>
           <div className='close-modal-button'><i onClick={close} className="fa-solid fa-x" /></div>
           <div className='login-signup-buttons-wrapper'>
             <div className='login-signup-wrapper'>
