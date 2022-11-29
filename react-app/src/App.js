@@ -9,6 +9,7 @@ import SetPage from './components/SetPage/SetPage';
 import NewSetPage from './components/NewSet/NewSetPage';
 import EditSetPage from './components/NewSet/EditSetPage';
 import YourComps from './components/YourComps/YourComps';
+import CompPage from './components/CompPage/CompPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -37,6 +38,9 @@ function App() {
         </Route>
         <Route path='/create-set' exact={true}>
           <NewSetPage />
+        </Route>
+        <Route exact={true} path='/comparisons/:compId'>
+          <CompPage />
         </Route>
         <Route exact={true} path='/sets/:setId'>
           <SetPage />

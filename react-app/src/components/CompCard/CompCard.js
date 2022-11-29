@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom"
 const CompCard = ({ comp }) => {
     const history = useHistory()
     return (
-        <div onClick={() => history.push(`/comp/${comp.id}`)} className="comp-card-wrapper">
+        <div onClick={() => history.push(`/comparisons/${comp.id}`)} className="comp-card-wrapper">
             <div className="comp-card-top">
                 <img
                     src={comp.workOneImageUrl}

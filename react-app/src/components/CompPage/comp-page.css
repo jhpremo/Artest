@@ -1,0 +1,83 @@
+.comp-page-wrapper {
+    width: 95%;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.comp-page-top {
+    box-sizing: border-box;
+    display: flex;
+    box-sizing: border-box;
+    width: 100%;
+    height: 600px;
+}
+
+#work-one {
+    margin-right: 10px;
+}
+
+#work-two {
+    margin-left: 10px;
+}
+
+.comp-page-work-wrapper {
+    width: 50%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+
+}
+
+.comp-page-work-border {
+    max-width: 100%;
+    max-height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-top: auto;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgb(206, 207, 212);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.comp-page-work-border>img {
+    max-width: 100%;
+    max-height: 85%;
+    margin-bottom: auto;
+}
+
+.comp-page-work-text {
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.comp-page-work-border>h3 {
+    margin: 5px 0px 0px 0px;
+    padding: 0px;
+    font-size: 18px;
+}
+
+.comp-page-bottom {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgb(206, 207, 212);
+}
+
+.comp-page-bottom>h4 {
+    border-bottom: 1px lightgray solid;
+    padding-bottom: 5px;
+    margin: 5px 0px;
+}
