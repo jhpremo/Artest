@@ -8,6 +8,7 @@ import YourSets from './components/YourSets/YourSets';
 import SetPage from './components/SetPage/SetPage';
 import NewSetPage from './components/NewSet/NewSetPage';
 import EditSetPage from './components/NewSet/EditSetPage';
+import YourComps from './components/YourComps/YourComps';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -30,6 +31,9 @@ function App() {
       <Switch>
         <Route path='/your-sets' exact={true}>
           <YourSets />
+        </Route>
+        <Route path='/your-comparisons' exact={true}>
+          <YourComps />
         </Route>
         <Route path='/create-set' exact={true}>
           <NewSetPage />

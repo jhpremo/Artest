@@ -464,7 +464,7 @@ In the work, Goya sought to commemorate Spanish resistance to Napoleon's armies 
         },
         {
             "user_id": 3,
-            "title": "Turner and Fruedrich romanticism",
+            "title": "Turner and Friedrich romanticism",
             "work_1_title": "Wanderer above the Sea of Fog",
             "work_1_artist": "Caspar David Friedrich",
             "work_1_display_date": "1818",

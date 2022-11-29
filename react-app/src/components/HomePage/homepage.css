@@ -24,9 +24,11 @@
     min-height: 150px;
     min-width: 300px;
     justify-content: center;
+    max-width: 500px;
 }
 
-.set-card-wrapper>h3 {
+.set-card-wrapper>h3,
+.comp-card-bottom>h3 {
     font-size: 18px;
     padding: 0px;
     margin: 0px;
@@ -34,7 +36,8 @@
     margin-top: 5px;
 }
 
-.set-card-wrapper>h4 {
+.set-card-wrapper>h4,
+.comp-card-bottom>h4 {
     font-size: 18px;
     padding: 0px;
     margin: 0px;
@@ -44,7 +47,8 @@
     word-wrap: break-word;
 }
 
-.set-card-wrapper>h5 {
+.set-card-wrapper>h5,
+.comp-card-bottom>h5 {
     font-size: 14px;
     color: rgb(147, 168, 206);
     padding: 0px;
@@ -73,4 +77,65 @@
     box-sizing: border-box;
     font-size: 18px;
     font-weight: 500;
+}
+
+.homepage-comparisons-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+
+.comp-card-wrapper {
+    width: 31%;
+    box-sizing: border-box;
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgb(206, 207, 212);
+    border-bottom: 4px solid white;
+    border-top: 4px solid white;
+    cursor: pointer;
+    box-sizing: border-box;
+    margin: 0px 1% 10px;
+    display: flex;
+    flex-direction: column;
+    min-height: 150px;
+    min-width: 300px;
+    align-items: center;
+    max-width: 500px;
+}
+
+.comp-card-wrapper:hover {
+    border-bottom: 4px solid rgb(168, 177, 255);
+}
+
+.comp-card-top {
+    box-sizing: border-box;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-bottom: auto;
+}
+
+.comp-card-bottom {
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.comp-card-top>img {
+    box-sizing: border-box;
+    box-shadow: 0px 2px 5px rgb(206, 207, 212);
+    width: 50%;
+    height: 150px;
+    overflow: hidden;
+    border-radius: 5px;
+    object-fit: cover;
+    object-position: center top;
+}
+
+#comp-card-image-left {
+    margin-right: 10px;
 }
