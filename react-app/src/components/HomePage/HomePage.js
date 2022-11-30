@@ -6,10 +6,11 @@ import { getFeaturedSetsThunk } from '../../store/sets';
 import SetCard from "../sets/SetCard"
 import CompCard from '../CompCard/CompCard';
 import "./homepage.css"
+
 const HomePage = () => {
     const dispatch = useDispatch()
     const [isLoaded, setIsLoaded] = useState(false)
-
+    const user = useSelector((state) => state.session.user)
     useEffect(() => {
         dispatch(getFeaturedSetsThunk()).then(() => dispatch(getFeaturedCompsThunk())).then(() => setIsLoaded(true))
     }, [dispatch])
@@ -27,6 +28,7 @@ const HomePage = () => {
     return (
         <>
             {isLoaded && <div className='homepage-wrapper'>
+                {!user && < div className='welcome-message'>Welcome to Artest an Art History Flash Card and Study Site</div>}
                 <h2>Featured sets</h2>
                 <div className='homepage-setcards-wrapper'>
                     {featuredSets?.map((set) => <SetCard set={set} key={set.id} />)}

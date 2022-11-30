@@ -139,6 +139,7 @@ const NavBar = () => {
               <NavLink onClick={manageUserLinks} activeClassName='n/a' className="drop-down_nav" to="/create-set"> <i className="fa-solid fa-layer-group" /> Set</NavLink>
               <NavLink onClick={manageUserLinks} activeClassName='n/a' className="drop-down_nav" to="/create-comparison"> <i className="fa-solid fa-table-columns" /> Comparison</NavLink>
             </div>
+
           </div>
         </div>
         <div className='navbar-right-wrapper'>
