@@ -57,7 +57,7 @@ const EditSetPage = () => {
             if (!card.title || card.title.length > 75) errorsArr.push(`Card ${i + 1} title must be between 1 and 75 characters`)
             if (!card.artist || card.artist.length > 75) errorsArr.push(`Card ${i + 1} artist name must be between 1 and 75 characters`)
             if (!card.displayDate || card.displayDate.length > 75) errorsArr.push(`Card ${i + 1} date must be between 1 and 50 characters`)
-            if (!card.imageUrl || card.imageUrl.length > 2048 || !(card.imageUrl.includes('.jpg') || card.imageUrl.includes('.png'))) errorsArr.push(`Card ${i + 1} image url must be valid url that includes .jpg or .png`)
+            if (!card.imageUrl || card.imageUrl.length > 2048 || !(card.imageUrl.toLowerCase().includes('.jpg') || card.imageUrl.toLowerCase().includes('.png'))) errorsArr.push(`Card ${i + 1} image url must be valid url that includes .jpg or .png`)
             if (card.notes && card.notes.length > 1000) errorsArr.push(`Card ${i + 1} notes must be less than 1000 characters`)
         }
         console.log(errorsArr)

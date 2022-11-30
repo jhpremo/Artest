@@ -65,11 +65,11 @@ const EditComp = () => {
         if (!workOneTitle || workOneTitle.length > 75) errorsArr.push(`Work one title must be between 1 and 75 characters`)
         if (!workOneArtist || workOneArtist.length > 75) errorsArr.push(`Work one artist name must be between 1 and 75 characters`)
         if (!workOneDisplayDate || workOneDisplayDate.length > 75) errorsArr.push(`Work one date must be between 1 and 50 characters`)
-        if (!workOneUrl || workOneUrl.length > 2048 || !(workOneUrl.includes('.jpg') || workOneUrl.includes('.png'))) errorsArr.push(`Work one image url must be valid url that includes .jpg or .png`)
+        if (!workOneUrl || workOneUrl.length > 2048 || !(workOneUrl.toLowerCase().includes('.jpg') || workOneUrl.toLowerCase().includes('.png'))) errorsArr.push(`Work one image url must be valid url that includes .jpg or .png`)
         if (!workTwoTitle || workTwoTitle.length > 75) errorsArr.push(`Work two title must be between 1 and 75 characters`)
         if (!workTwoArtist || workTwoArtist.length > 75) errorsArr.push(`Work two artist name must be between 1 and 75 characters`)
         if (!workTwoDisplayDate || workTwoDisplayDate.length > 75) errorsArr.push(`Work two date must be between 1 and 50 characters`)
-        if (!workTwoUrl || workTwoUrl.length > 2048 || !(workTwoUrl.includes('.jpg') || workTwoUrl.includes('.png'))) errorsArr.push(`Work two image url must be valid url that includes .jpg or .png`)
+        if (!workTwoUrl || workTwoUrl.length > 2048 || !(workTwoUrl.toLowerCase().includes('.jpg') || workTwoUrl.toLowerCase().includes('.png'))) errorsArr.push(`Work two image url must be valid url that includes .jpg or .png`)
         if (comparisonText && comparisonText.length > 3000) errorsArr.push(`Comparison essay must be less than 3000 characters`)
         if (errorsArr.length) {
             setErrors(errorsArr)

@@ -41,7 +41,7 @@ const NewSetPage = () => {
             if (!card.title || card.title.length > 75) errorsArr.push(`Card ${i + 1} title must be between 1 and 75 characters`)
             if (!card.artist || card.artist.length > 75) errorsArr.push(`Card ${i + 1} artist name must be between 1 and 75 characters`)
             if (!card.displayDate || card.displayDate.length > 75) errorsArr.push(`Card ${i + 1} date must be between 1 and 50 characters`)
-            if (!card.url || card.url.length > 2048 || !(card.url.includes('.jpg') || card.url.includes('.png'))) errorsArr.push(`Card ${i + 1} image url must be valid url that includes .jpg or .png`)
+            if (!card.url || card.url.length > 2048 || !(card.url.toLowerCase().includes('.jpg') || card.url.toLowerCase().includes('.png'))) errorsArr.push(`Card ${i + 1} image url must be valid url that includes .jpg or .png`)
             if (card.notes && card.notes.length > 1000) errorsArr.push(`Card ${i + 1} notes must be less than 1000 characters`)
         }
         if (errorsArr.length) {
