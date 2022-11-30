@@ -29,14 +29,6 @@ def edit_set_card(id):
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate():
-        new_card = SetCard(
-        title=form.title.data,
-        artist=form.artist.data,
-        image_url=form.image_url.data,
-        display_date=form.display_date.data,
-        notes=data.get('notes'),
-        marker_obj=data.get('marker_obj')
-        )
         current_card.title = form.title.data
         current_card.artist = form.artist.data
         current_card.image_url = form.image_url.data
