@@ -120,7 +120,6 @@ def edit_comp(id):
         put_comp.work_2_display_date=data.get('work_2_display_date')
         put_comp.work_2_marker_obj=data.get('work_2_marker_obj')
         put_comp.comparison_text=data.get('comparison_text')
-
         db.session.commit()
         return put_comp.to_dict()
     return form.errors
