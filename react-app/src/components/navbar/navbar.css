@@ -7,6 +7,15 @@
 
 }
 
+.welcome-message {
+    color: rgb(66, 85, 255);
+    font-size: 20px;
+    font-weight: 600;
+    margin-right: auto;
+    margin-top: 20px;
+    margin-left: auto;
+}
+
 .navbar-wrapper {
     display: flex;
     justify-content: space-between;
