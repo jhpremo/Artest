@@ -40,7 +40,7 @@ const NewComp = () => {
         if (!workTwoArtist || workTwoArtist.length > 75) errorsArr.push(`Work two artist name must be between 1 and 75 characters`)
         if (!workTwoDisplayDate || workTwoDisplayDate.length > 75) errorsArr.push(`Work two date must be between 1 and 50 characters`)
         if (!workTwoUrl || workTwoUrl.length > 2048 || !(workTwoUrl.includes('.jpg') || workTwoUrl.includes('.png'))) errorsArr.push(`Work two image url must be valid url that includes .jpg or .png`)
-        if (comparisonText && comparisonText.length > 1000) errorsArr.push(`Comparison essay must be less than 3000 characters`)
+        if (comparisonText && comparisonText.length > 3000) errorsArr.push(`Comparison essay must be less than 3000 characters`)
         if (errorsArr.length) {
             setErrors(errorsArr)
             return
@@ -56,12 +56,12 @@ const NewComp = () => {
                 title: compTitle,
                 work_1_title: workOneTitle,
                 work_1_artist: workOneArtist,
-                work_1_image_url: workOneDisplayDate,
-                work_1_display_date: workOneUrl,
+                work_1_image_url: workOneUrl,
+                work_1_display_date: workOneDisplayDate,
                 work_2_title: workTwoTitle,
                 work_2_artist: workTwoArtist,
-                work_2_image_url: workTwoDisplayDate,
-                work_2_display_date: workTwoUrl,
+                work_2_image_url: workTwoUrl,
+                work_2_display_date: workTwoDisplayDate,
                 comparison_text: comparisonText
             })
         })

@@ -7,13 +7,28 @@ const SignUpForm = ({ setToggleSignup }) => {
   const [username, setUsername] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isSubmitted, setIsSubmited] = useState(false);
   const [repeatPassword, setRepeatPassword] = useState('');
   const user = useSelector(state => state.session.user);
   const dispatch = useDispatch();
 
+  useEffect(() => {
+    let errorArr = []
+    if (!username || username.length > 40) errorArr.push('username must be between 1 and 40 characters')
+    if (!email || !email.includes('@') || !email.includes('.')) errorArr.push('email address must be valid')
+    if (password != repeatPassword) errorArr.push('passwords must match')
+
+    setErrors(errorArr)
+
+  }, [username, password, repeatPassword, email])
+
+
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
+
+    setIsSubmited(true)
+
+    if (!errors.length) {
       const data = await dispatch(signUp(username, email, password));
       if (data) {
         setErrors(data)
@@ -44,50 +59,61 @@ const SignUpForm = ({ setToggleSignup }) => {
   }, [user, setToggleSignup])
 
   return (
-    <form onSubmit={onSignUp}>
-      <div>
-        {errors.map((error, ind) => (
+    <form className="login-form" onSubmit={onSignUp}>
+      <div className='errors-login'>
+        {isSubmitted && errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
-      <div>
-        <label>User Name</label>
+      <div className="new-card-input-wrapper">
         <input
           type='text'
           name='username'
           onChange={updateUsername}
+          required
+          className="create-form-card-input"
+          maxLength={40}
           value={username}
         ></input>
+        <span htmlFor='email' className="create-form-card-label">Username</span>
       </div>
-      <div>
-        <label>Email</label>
+      <div className="new-card-input-wrapper">
         <input
           type='text'
           name='email'
+          maxLength={255}
+          required
+          className="create-form-card-input"
           onChange={updateEmail}
           value={email}
         ></input>
+        <span htmlFor='email' className="create-form-card-label">Email</span>
       </div>
-      <div>
-        <label>Password</label>
+      <div className="new-card-input-wrapper">
         <input
           type='password'
           name='password'
+          maxLength={40}
+          className="create-form-card-input"
+          required
           onChange={updatePassword}
           value={password}
         ></input>
+        <span htmlFor='email' className="create-form-card-label">Password</span>
       </div>
-      <div>
-        <label>Repeat Password</label>
+      <div className="new-card-input-wrapper">
         <input
           type='password'
           name='repeat_password'
+          maxLength={40}
+          className="create-form-card-input"
+          required
           onChange={updateRepeatPassword}
           value={repeatPassword}
-          required={true}
         ></input>
+        <span htmlFor='email' className="create-form-card-label">Repeat Password</span>
       </div>
-      <button type='submit'>Sign Up</button>
+      <button className="navbar-create-button" id='signup-submit-button' type='submit'>Sign Up</button>
     </form>
   );
 };

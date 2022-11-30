@@ -13,7 +13,7 @@ const LoginForm = ({ setToggleLogin }) => {
     e.preventDefault();
     const data = await dispatch(login(email, password));
     if (data) {
-      setErrors(data);
+      setErrors(["Entered email or password is incorrect"]);
     }
   };
 
@@ -33,33 +33,37 @@ const LoginForm = ({ setToggleLogin }) => {
 
 
   return (
-    <form onSubmit={onLogin}>
-      <div>
+    <form className="login-form" onSubmit={onLogin}>
+      <div className='errors-login'>
         {errors.map((error, ind) => (
           <div key={ind}>{error}</div>
         ))}
       </div>
-      <div>
-        <label htmlFor='email'>Email</label>
+      <div className="new-card-input-wrapper">
         <input
           name='email'
+          className="create-form-card-input"
           type='text'
-          placeholder='Email'
+          required
+          maxLength={255}
           value={email}
           onChange={updateEmail}
         />
+        <span htmlFor='email' className="create-form-card-label">Email</span>
       </div>
-      <div>
-        <label htmlFor='password'>Password</label>
+      <div className="new-card-input-wrapper">
         <input
           name='password'
           type='password'
-          placeholder='Password'
+          maxLength={40}
+          required
+          className="create-form-card-input"
           value={password}
           onChange={updatePassword}
         />
-        <button type='submit'>Login</button>
+        <span htmlFor='password' className="create-form-card-label">Password</span>
       </div>
+      <button className="navbar-create-button" id='login-submit-button' type='submit'>Login</button>
     </form>
   );
 };

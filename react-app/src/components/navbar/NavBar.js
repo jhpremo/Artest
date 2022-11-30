@@ -6,14 +6,15 @@ import LogoutButton from '../auth/LogoutButton';
 import LoginForm from '../auth/LoginForm';
 import "./navbar.css"
 import SignUpForm from '../auth/SignUpForm';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { login } from '../../store/session';
 
 const NavBar = () => {
   const [toggleLogin, setToggleLogin] = useState(false)
   const [toggleSignup, setToggleSignup] = useState(false)
   const [toggleLinkDisable, setToggleLinkDisable] = useState(false)
   const [toggleDropDown, setToggleDropDown] = useState(false)
-
+  const dispatch = useDispatch()
   let sessionUser = useSelector((state) => state.session.user)
 
   const openDropDown = () => {
@@ -70,6 +71,12 @@ const NavBar = () => {
       setToggleLogin(true)
     }
   }
+
+  const handleDemoLogin = async (e) => {
+    await dispatch(login('demo@aa.io', 'password'))
+  }
+
+
   return (
     <>
       {toggleLogin && <div className='login-modal'>
@@ -84,13 +91,16 @@ const NavBar = () => {
             <div className='login-signup-wrapper'>
               <button onClick={openSignup}>Sign up</button>
             </div>
+            <div className='login-signup-wrapper'>
+              <button onClick={handleDemoLogin}>Demo log in</button>
+            </div>
           </div>
           <LoginForm setToggleLogin={setToggleLogin} />
         </div>
       </div>}
       {toggleSignup && <div className='login-modal'>
         <div className='login-left'> <span>Artest your knowledge</span></div>
-        <div className='login-right'>\
+        <div className='login-right'>
           <div className='close-modal-button'><i onClick={close} className="fa-solid fa-x" /></div>
           <div className='login-signup-buttons-wrapper'>
             <div className='login-signup-wrapper'>
@@ -99,6 +109,9 @@ const NavBar = () => {
             <div className='login-signup-wrapper'>
               <button id='signup-active' onClick={openSignup}>Sign up</button>
               <i className="fa-solid fa-paintbrush" />
+            </div>
+            <div className='login-signup-wrapper'>
+              <button onClick={handleDemoLogin}>Demo log in</button>
             </div>
           </div>
           <SignUpForm setToggleSignup={setToggleSignup} />

@@ -247,7 +247,7 @@ def seed_users():
             ]
         },
         {
-            "user_id": 5,
+            "user_id": 1,
             "title": "Paintings by Vincent Van Gogh",
             "cards": [
                 {
@@ -364,7 +364,7 @@ def seed_users():
             ]
         },
         {
-            "user_id": 6,
+            "user_id": 1,
             "title": "Grab bag of Impressionist paintings",
             "cards": [
                 {
@@ -463,7 +463,7 @@ The School of Athens (Italian: Scuola di Atene) is a fresco by the Italian Renai
 In the work, Goya sought to commemorate Spanish resistance to Napoleon's armies during the occupation of 1808 in the Peninsular War. Along with its companion piece of the same size, The Second of May 1808 (or The Charge of the Mamelukes), it was commissioned by the provisional government of Spain at Goya's suggestion."""
         },
         {
-            "user_id": 3,
+            "user_id": 1,
             "title": "Turner and Friedrich romanticism",
             "work_1_title": "Wanderer above the Sea of Fog",
             "work_1_artist": "Caspar David Friedrich",
@@ -505,7 +505,7 @@ David is a masterpiece of Renaissance sculpture, created in marble between 1501 
 The bronze sculpture, in which Medusa's head turns men to stone, is appropriately surrounded by three huge marble statues of men: Hercules, David, and later Neptune. Cellini's use of bronze in Perseus and the head of Medusa, and the motifs he used to respond to the previous sculpture in the piazza, were highly innovative. Examining the sculpture from the back, one can see a self-portrait of the sculptor Cellini on the back of Perseus' helmet."""
         },
         {
-            "user_id": 5,
+            "user_id": 1,
             "title": "Nightscapes by Van Gogh",
             "work_1_title": "The Starry Night",
             "work_1_artist": "Vincent Van Gogh",
