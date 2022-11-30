@@ -74,10 +74,18 @@
     background: white;
     border-radius: 5px;
     box-shadow: 0px 0px 5px rgb(206, 207, 212);
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .comp-page-bottom>h4 {
     border-bottom: 1px lightgray solid;
     padding-bottom: 5px;
     margin: 5px 0px;
+}
+
+#comp-page-bottom-button-wrapper {
+    align-self: flex-end;
+    margin-bottom: 20px;
+    margin-right: 0px;
 }

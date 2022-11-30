@@ -10,7 +10,7 @@ import "./comp-page.css"
 const CompPage = () => {
     const dispatch = useDispatch()
     const history = useHistory()
-
+    const user = useSelector((state) => state.session.user)
     const [isLoaded, setIsLoaded] = useState(false)
     const { compId } = useParams()
 
@@ -27,6 +27,23 @@ const CompPage = () => {
             })
         } else setIsLoaded(true)
     }, [comp, dispatch, history, compId])
+
+    const handleDeleteSet = async () => {
+        if (
+            window.confirm(
+                `This will delete ${comp.title}`
+            )
+        ) {
+            await fetch(`/api/comparisons/${comp.id}`, {
+                method: "DELETE"
+            })
+            history.push('/your-comparisons')
+        }
+    }
+
+    const handleEditSet = () => {
+        history.push(`/comparisons/${comp.id}/edit`)
+    }
 
     return (
         <>
@@ -66,6 +83,10 @@ const CompPage = () => {
                     <h4>{comp.title}</h4>
                     <p>{comp.comparisonText}</p>
                 </div>
+                {user?.id === comp.userId && <div className="set-page-top-bar-buttons" id="comp-page-bottom-button-wrapper">
+                    <button onClick={handleEditSet}>edit</button>
+                    <button onClick={handleDeleteSet}>delete</button>
+                </div>}
             </div>}
         </>
     )

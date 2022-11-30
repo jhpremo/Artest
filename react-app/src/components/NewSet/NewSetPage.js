@@ -44,7 +44,6 @@ const NewSetPage = () => {
             if (!card.url || card.url.length > 2048 || !(card.url.includes('.jpg') || card.url.includes('.png'))) errorsArr.push(`Card ${i + 1} image url must be valid url that includes .jpg or .png`)
             if (card.notes && card.notes.length > 1000) errorsArr.push(`Card ${i + 1} notes must be less than 1000 characters`)
         }
-        console.log(errorsArr)
         if (errorsArr.length) {
             setErrors(errorsArr)
             return

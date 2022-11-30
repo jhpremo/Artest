@@ -44,6 +44,14 @@ export const getOneCompThunk = (id) => async (dispatch) => {
     } else return false
 }
 
+const CLEAR_COMPS = 'comparisons/clear/store'
+
+export const clearComps = () => {
+    return {
+        type: CLEAR_COMPS
+    }
+}
+
 
 
 
@@ -55,6 +63,8 @@ export default function compsReducer(state = null, action) {
                 getCompsState[action.comps[i].id] = action.comps[i]
             }
             return getCompsState
+        case CLEAR_COMPS:
+            return null
         default:
             return state;
     }
