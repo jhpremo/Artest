@@ -48,6 +48,7 @@
     font-size: 15px;
     color: rgb(147, 155, 186);
     transition: 0.2s ease all;
+    pointer-events: none;
 }
 
 .new-set-input-wrapper input:focus~.create-form-label,
