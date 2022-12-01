@@ -1,6 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import db, Set, SetCard
+from sqlalchemy import or_
 from sqlalchemy.orm import joinedload
 from random import *
 from ..forms.set_form import CreateEditSetForm
@@ -136,3 +137,23 @@ def post_set_card(id):
         db.session.commit()
         return new_card.to_dict()
     return form.errors
+
+@set_routes.get("/search")
+def search_cards():
+
+    if "q" in request.args:
+        terms = [term.lower() for term in request.args['q'].split()]
+
+    terms_condition = or_(*[Set.title.ilike(f"%{term}%") for term in terms], *[Set.cards.any(SetCard.title.ilike(f"%{term}%")) for term in terms], *[Set.cards.any(SetCard.artist.ilike(f"%{term}%")) for term in terms])
+
+
+    all_sets = Set.query.options(joinedload(Set.user), joinedload(Set.cards)).filter(terms_condition)
+
+    payload=[]
+    for q_set in all_sets:
+        set_dct = q_set.to_dict()
+        set_dct["username"]=q_set.user.username
+        set_dct["cards"]=[card.to_dict() for card in q_set.cards]
+        set_dct["numCards"]=len(set_dct["cards"])
+        payload.append(set_dct)
+    return {"sets":payload}

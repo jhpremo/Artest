@@ -3,6 +3,7 @@ from flask_login import login_required, current_user
 from app.models import db, Comparison
 from sqlalchemy.orm import joinedload
 from ..forms.comparison_form import CreateEditCompForm
+from sqlalchemy import or_
 from random import *
 
 comparison_routes = Blueprint('comparisons', __name__)
@@ -138,3 +139,26 @@ def delete_comp(id):
     db.session.delete(current_comp)
     db.session.commit()
     return { "message": "Successfully deleted" }
+
+
+@comparison_routes.get("/search")
+def search_comps():
+
+    if "q" in request.args:
+        terms = [term.lower() for term in request.args['q'].split()]
+
+    terms_condition = or_(
+    *[Comparison.title.ilike(f"%{term}%") for term in terms],
+    *[Comparison.work_1_title.ilike(f"%{term}%") for term in terms],
+    *[Comparison.work_2_title.ilike(f"%{term}%") for term in terms],
+    *[Comparison.work_1_artist.ilike(f"%{term}%") for term in terms],
+    *[Comparison.work_2_artist.ilike(f"%{term}%") for term in terms]
+    )
+
+    all_comps = Comparison.query.options(joinedload(Comparison.user)).filter(terms_condition)
+    payload = []
+    for comp in all_comps:
+        comp_dct = comp.to_dict()
+        comp_dct['username']=comp.user.username
+        payload.append(comp_dct)
+    return {"comparisons":payload}
