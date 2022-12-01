@@ -173,6 +173,15 @@
     background-color: rgba(238, 237, 237, 0.733);
 }
 
+#active-list-button {
+    background: white;
+    box-shadow: 0px 0px 1px rgb(88, 99, 128);
+}
+
+#active-list-button:hover {
+    background-color: rgba(238, 237, 237, 0.733);
+}
+
 .cards-list-wrapper {
     display: flex;
     flex-direction: column;

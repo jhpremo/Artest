@@ -13,9 +13,11 @@ const SetPage = () => {
     const [togglePaintingSide, setTogglePaintingSide] = useState(true)
     const [toggleShuffle, setToggleShuffle] = useState(false)
     const [toggleDefaultSide, setToggleDefaultSide] = useState(true)
+    const [toggleList, setToggleList] = useState(true)
     const [currentCard, setCurrentCard] = useState(0)
     const [shuffleId, setShuffleId] = useState("n/a")
     const [defaultId, setDefaultId] = useState("active-side-button")
+    const [listId, setListId] = useState("active-list-button")
     const { setId } = useParams()
     const user = useSelector((state) => state.session.user)
 
@@ -79,6 +81,16 @@ const SetPage = () => {
         setToggleDefaultSide(!toggleDefaultSide)
     }
 
+    const handleListToggle = () => {
+        if (!toggleList) {
+            setListId('active-list-button')
+            setToggleList(true)
+        } else {
+            setListId('n/a')
+            setToggleList(false)
+        }
+    }
+
     const handleDeleteSet = async () => {
         if (
             window.confirm(
@@ -138,11 +150,12 @@ const SetPage = () => {
                     <div className="below-card-wrapper">
                         <p>Created by {set.username}</p>
                         <div className='set-options-button-wrapper'>
+                            <button onClick={handleListToggle} id={listId}><i className="fa-solid fa-list-ul" /></button>
                             <button onClick={handleShuffle} id={shuffleId}><i className="fa-solid fa-shuffle" /></button>
                             <button onClick={handleDefaultSide} id={defaultId}><i className="fa-regular fa-image" /></button>
                         </div>
                     </div></>}
-                <div className="cards-list-wrapper">
+                {toggleList && <div className="cards-list-wrapper">
                     {set.cards.map(card => {
                         return (
                             <div className="cards-list-card">
@@ -166,7 +179,7 @@ const SetPage = () => {
                             </div>
                         )
                     })}
-                </div>
+                </div>}
             </div>}
         </>
     )
