@@ -31,6 +31,18 @@ export const getSessionCompsThunk = () => async (dispatch) => {
     }
 }
 
+export const getSearchCompsThunk = (q) => async (dispatch) => {
+    const response = await fetch(`/api/comparisons/search?q=${q}`)
+
+    if (response.ok) {
+        const data = await response.json();
+        if (data.errors) {
+            return;
+        }
+        dispatch(getComps(data));
+    }
+}
+
 export const getOneCompThunk = (id) => async (dispatch) => {
     const response = await fetch(`/api/comparisons/${id}`)
 

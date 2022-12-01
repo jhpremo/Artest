@@ -1,7 +1,7 @@
 
 import React, { useEffect } from 'react';
 import { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory, useLocation } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 import LoginForm from '../auth/LoginForm';
 import "./navbar.css"
@@ -10,10 +10,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { login } from '../../store/session';
 
 const NavBar = () => {
+  const history = useHistory()
   const [toggleLogin, setToggleLogin] = useState(false)
   const [toggleSignup, setToggleSignup] = useState(false)
   const [toggleLinkDisable, setToggleLinkDisable] = useState(false)
   const [toggleDropDown, setToggleDropDown] = useState(false)
+  const [search, setSearch] = useState('')
+  const location = useLocation()
   const dispatch = useDispatch()
   let sessionUser = useSelector((state) => state.session.user)
 
@@ -21,6 +24,14 @@ const NavBar = () => {
     if (toggleDropDown) return;
     setToggleDropDown(true);
   };
+
+  useEffect(() => {
+    let params = new URLSearchParams(location.search)
+    let q = params.get('q')
+    if (q) {
+      setSearch(q)
+    } else setSearch('')
+  }, [location])
 
   useEffect(() => {
     if (!toggleDropDown) return;
@@ -74,6 +85,18 @@ const NavBar = () => {
 
   const handleDemoLogin = async (e) => {
     await dispatch(login('demo@aa.io', 'password'))
+  }
+
+  const checkSubmit = (e) => {
+    if (e.nativeEvent.code === "Enter") {
+      let searchParams = new URLSearchParams()
+      if (search) searchParams.append('q', search)
+
+      if (searchParams.toString()) {
+        history.push('/search?' + searchParams.toString())
+        setSearch('')
+      }
+    }
   }
 
 
@@ -143,14 +166,24 @@ const NavBar = () => {
           </div>
         </div>
         <div className='navbar-right-wrapper'>
+          <div className='navbar-search-wrapper'>
+            <i className="fa-solid fa-magnifying-glass" />
+            <input
+              type='text'
+              placeholder='Search sets and comparisons'
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              onKeyDown={checkSubmit}
+            />
+          </div>
           {!sessionUser && <><button onClick={openLogin} className='navbar-login-button'>
             Login
           </button>
             <button onClick={openSignup} className='navbar-signup-button'>
               Sign Up
             </button></>}
+          {sessionUser && <LogoutButton />}
         </div>
-        {sessionUser && <LogoutButton />}
       </div>
     </>
   );

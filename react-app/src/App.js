@@ -12,6 +12,7 @@ import YourComps from './components/YourComps/YourComps';
 import CompPage from './components/CompPage/CompPage';
 import NewComp from './components/NewComp/NewComp';
 import EditComp from './components/NewComp/EditComp';
+import SearchPage from './components/SearchPage/SearchPage';
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -43,6 +44,9 @@ function App() {
         </Route>
         <Route path='/create-comparison' exact={true}>
           <NewComp />
+        </Route>
+        <Route exact={true} path='/search'>
+          <SearchPage />
         </Route>
         <Route exact={true} path='/comparisons/:compId'>
           <CompPage />

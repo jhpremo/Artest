@@ -31,6 +31,18 @@ export const getSessionSetsThunk = () => async (dispatch) => {
     }
 }
 
+export const getSearchSetsThunk = (q) => async (dispatch) => {
+    const response = await fetch(`/api/sets/search?q=${q}`)
+
+    if (response.ok) {
+        const data = await response.json();
+        if (data.errors) {
+            return;
+        }
+        dispatch(getSets(data));
+    }
+}
+
 export const getOneSetThunk = (id) => async (dispatch) => {
     const response = await fetch(`/api/sets/${id}`)
 
