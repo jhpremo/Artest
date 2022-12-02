@@ -69,6 +69,10 @@ function App() {
           <h1>404 Error: Not found</h1>
         </Route>
       </Switch>
+      <h6 className="about-links-footer">
+        <div className="about-links-github-icon"> <a target="_blank" href="https://github.com/jhpremo/Artest"><i className="fa-brands fa-github" /></a> <a target="_blank" href="https://www.linkedin.com/in/jhpremo/"><i className="fa-brands fa-linkedin" /></a></div>
+        <div className="about-links-creators">Website clone created by Jason Premo</div>
+      </h6>
     </BrowserRouter>
   );
 }
