@@ -109,7 +109,7 @@ const NewComp = () => {
                                     maxLength={75}
                                 />
                                 <span className="create-form-card-label">
-                                    Title
+                                    Title e.g "Hades abducting persephone amphora"
                                 </span>
                             </div>
                             <div className="new-card-input-wrapper">
@@ -122,7 +122,7 @@ const NewComp = () => {
                                     maxLength={75}
                                 />
                                 <span className="create-form-card-label">
-                                    Artist name
+                                    Artist name e.g "Andokides Painter"
                                 </span>
                             </div>
                             <div className="new-card-input-wrapper">
@@ -135,7 +135,7 @@ const NewComp = () => {
                                     maxLength={50}
                                 />
                                 <span className="create-form-card-label">
-                                    Date
+                                    Display Date e.g "6th century B.C.E."
                                 </span>
                             </div>
                             <div className="new-card-input-wrapper">
@@ -179,7 +179,7 @@ const NewComp = () => {
                                     maxLength={75}
                                 />
                                 <span className="create-form-card-label">
-                                    Title
+                                    Title e.g "Roman terra sigillata bowl"
                                 </span>
                             </div>
                             <div className="new-card-input-wrapper">
@@ -192,7 +192,7 @@ const NewComp = () => {
                                     maxLength={75}
                                 />
                                 <span className="create-form-card-label">
-                                    Artist name
+                                    Artist name e.g "Unknown roman artist"
                                 </span>
                             </div>
                             <div className="new-card-input-wrapper">
@@ -205,7 +205,7 @@ const NewComp = () => {
                                     maxLength={50}
                                 />
                                 <span className="create-form-card-label">
-                                    Date
+                                    Display Date e.g "1st century C.E."
                                 </span>
                             </div>
                             <div className="new-card-input-wrapper">
