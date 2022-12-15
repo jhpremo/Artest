@@ -64,7 +64,53 @@ export const clearComps = () => {
     }
 }
 
+const UPDATE_MARKER_ONE = "comparisons/markerobj/update/one"
 
+const updateMarkerOne = (compId, markerObj) => {
+    return {
+        type: UPDATE_MARKER_ONE,
+        markerObj: markerObj,
+        compId
+    }
+}
+
+const UPDATE_MARKER_TWO = "comparisons/markerobj/update/two"
+
+const updateMarkerTwo = (compId, markerObj) => {
+    return {
+        type: UPDATE_MARKER_TWO,
+        markerObj: markerObj,
+        compId
+    }
+}
+
+export const updateMarkerThunk = (compId, markerObj, imgId) => async (dispatch) => {
+    let work_1_marker_obj
+    let work_2_marker_obj
+    if (imgId === "img1") work_1_marker_obj = markerObj
+    if (imgId === "img2") work_2_marker_obj = markerObj
+
+    const response = await fetch(`/api/comparisons/${compId}/marker`, {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            work_1_marker_obj,
+            work_2_marker_obj
+        })
+    })
+
+    if (response.ok) {
+        const data = await response.json();
+        if (data.errors) {
+            return;
+        }
+        if (work_1_marker_obj) dispatch(updateMarkerOne(compId, work_1_marker_obj));
+        else if (work_2_marker_obj) dispatch(updateMarkerTwo(compId, work_2_marker_obj))
+        return true
+    } else return false
+}
 
 
 export default function compsReducer(state = null, action) {
@@ -77,6 +123,14 @@ export default function compsReducer(state = null, action) {
             return getCompsState
         case CLEAR_COMPS:
             return null
+        case UPDATE_MARKER_ONE:
+            let compsState = { ...state }
+            compsState[action.compId].workOneMarkerObj = JSON.stringify(action.markerObj)
+            return compsState
+        case UPDATE_MARKER_TWO:
+            let twoCompsState = { ...state }
+            twoCompsState[action.compId].workTwoMarkerObj = JSON.stringify(action.markerObj)
+            return twoCompsState
         default:
             return state;
     }

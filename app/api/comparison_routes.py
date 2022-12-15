@@ -5,7 +5,7 @@ from sqlalchemy.orm import joinedload
 from ..forms.comparison_form import CreateEditCompForm
 from sqlalchemy import or_
 from random import *
-
+import json
 comparison_routes = Blueprint('comparisons', __name__)
 
 
@@ -114,12 +114,10 @@ def edit_comp(id):
         put_comp.work_1_artist=data.get('work_1_artist')
         put_comp.work_1_image_url=data.get('work_1_image_url')
         put_comp.work_1_display_date=data.get('work_1_display_date')
-        put_comp.work_1_marker_obj=data.get('work_1_marker_obj')
         put_comp.work_2_title=data.get('work_2_title')
         put_comp.work_2_artist=data.get('work_2_artist')
         put_comp.work_2_image_url=data.get('work_2_image_url')
         put_comp.work_2_display_date=data.get('work_2_display_date')
-        put_comp.work_2_marker_obj=data.get('work_2_marker_obj')
         put_comp.comparison_text=data.get('comparison_text')
         db.session.commit()
         return put_comp.to_dict()
@@ -162,3 +160,26 @@ def search_comps():
         comp_dct['username']=comp.user.username
         payload.append(comp_dct)
     return {"comparisons":payload}
+
+@comparison_routes.put("/<int:id>/marker")
+@login_required
+def marker_update(id):
+    put_comp = Comparison.query.get(id)
+
+    if put_comp == None:
+        return {"message": "Comparison could not be found"}, 404
+
+    if put_comp.user_id != int(current_user.get_id()):
+        return {"message": "Forbidden"}, 403
+
+    data = request.json
+    work1 = data.get('work_1_marker_obj')
+    work2 = data.get('work_2_marker_obj')
+    if work1:
+        put_comp.work_1_marker_obj= json.dumps(work1)
+
+    if work2:
+        put_comp.work_2_marker_obj= json.dumps(work2)
+
+    db.session.commit()
+    return {"message": "success"}

@@ -5,7 +5,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 10px;
+    margin-top: 30px;
 }
 
 .comp-page-top {
@@ -80,11 +80,17 @@
     box-sizing: border-box;
 }
 
-.comp-page-bottom>h4 {
-    border-bottom: 1px lightgray solid;
-    padding-bottom: 5px;
+.comp-page-bottom>div>h4 {
     margin: 5px 0px;
     word-wrap: break-word;
+}
+
+.comp-page-bottom>div {
+    border-bottom: 1px lightgray solid;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .comp-page-bottom>p {
@@ -95,4 +101,22 @@
     align-self: flex-end;
     margin-bottom: 20px;
     margin-right: 0px;
+}
+
+.show-annotations {
+    border: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    margin-left: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgb(55, 55, 55);
+    font-size: 14px;
+    background: none;
+    background: white;
+    box-shadow: 0px 0px 1px rgb(88, 99, 128);
+}
+
+.show-annotations:hover {
+    background-color: rgb(246, 247, 251);
 }
