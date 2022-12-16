@@ -17,6 +17,7 @@ const CompPage = () => {
     const { compId } = useParams()
     const [showAnnotations, setShowAnnotations] = useState(false)
     const [imageCursor, setImageCursor] = useState({ cursor: 'default' })
+    const [triggerHandleClose, setTriggerHandleClose] = useState(false)
 
     const showMarkerArea = (id) => {
         if (user?.id !== comp.userId) {
@@ -28,22 +29,41 @@ const CompPage = () => {
             markerArea.addEventListener('render', async e => {
                 await dispatch(updateMarkerThunk(compId, e.state, id))
                 document.getElementById(id).src = e.dataUrl
+                console.log('render')
             })
-            markerArea.addEventListener('close', async e => {
-                let markerArea = new markerjs2.MarkerArea(document.getElementById(id))
-                markerArea.renderAtNaturalSize = true
-                markerArea.addEventListener('render', async e => {
-                    document.getElementById(id).src = e.dataUrl
-                })
-                if (id === "img1") markerArea.renderState(JSON.parse(comp.workOneMarkerObj))
-                else if (id === "img2") markerArea.renderState(JSON.parse(comp.workTwoMarkerObj))
-
-            })
+            // markerArea.addEventListener('close', async e => {
+            //     setTriggerHandleClose(!triggerHandleClose)
+            //     console.log('close')
+            // })
             markerArea.show()
             if (id === "img1" && comp.workOneMarkerObj && comp.workOneMarkerObj != 'null') markerArea.restoreState(JSON.parse(comp.workOneMarkerObj))
             if (id === "img2" && comp.workTwoMarkerObj && comp.workTwoMarkerObj != 'null') markerArea.restoreState(JSON.parse(comp.workTwoMarkerObj))
         }
     }
+    // when image annotation is closed restores previous image state
+    // useEffect(() => {
+    //     if (showAnnotations) {
+    //         document.getElementById("img1").src = comp.workOneImageUrl
+    //         document.getElementById("img2").src = comp.workTwoImageUrl
+    //         if (comp.workOneMarkerObj && comp.workOneMarkerObj !== 'null') {
+    //             let markerArea = new markerjs2.MarkerArea(document.getElementById("img1"))
+    //             markerArea.renderAtNaturalSize = true
+    //             markerArea.focus = null
+    //             markerArea.addEventListener('render', async e => {
+    //                 document.getElementById("img1").src = e.dataUrl
+    //             })
+    //             markerArea.renderState(JSON.parse(comp.workOneMarkerObj))
+    //         }
+    //         if (comp.workTwoMarkerObj && comp.workTwoMarkerObj !== 'null') {
+    //             let markerArea = new markerjs2.MarkerArea(document.getElementById("img2"))
+    //             markerArea.renderAtNaturalSize = true
+    //             markerArea.addEventListener('render', async e => {
+    //                 document.getElementById("img2").src = e.dataUrl
+    //             })
+    //             markerArea.renderState(JSON.parse(comp.workTwoMarkerObj))
+    //         }
+    //     }
+    // }, [triggerHandleClose])
 
 
     let comp = useSelector((state) => {
