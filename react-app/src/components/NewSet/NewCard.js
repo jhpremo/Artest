@@ -42,7 +42,25 @@ const NewCard = ({ index }) => {
         if (cards.length > 2) dispatch(formDeleteCard(index))
     }
 
-
+    const updateImage = async (e) => {
+        const file = e.target.files[0];
+        if (file !== null) {
+            const formData = new FormData();
+            formData.append("image", file);
+            const res = await fetch('/api/users/images', {
+                method: "POST",
+                body: formData,
+            });
+            if (res.ok) {
+                let awsImage = await res.json();
+                console.log(awsImage.url)
+                setUrl(awsImage?.url)
+            }
+            else {
+                setUrl('')
+            }
+        }
+    }
 
     return (
         <div className="form-cards-list-card-wrapper">
@@ -88,18 +106,15 @@ const NewCard = ({ index }) => {
                             Display Date e.g "6th century B.C.E."
                         </span>
                     </div>
-                    <div className="new-card-input-wrapper">
+                    <div className="new-card-input-wrapper file-upload-wrapper">
                         <input
-                            type="text"
-                            className="create-form-card-input"
-                            value={url}
-                            onChange={(e) => setUrl(e.target.value)}
+                            type="file"
+                            accept=".png, .jpg, .jpeg"
+                            className="create-form-card-input file-upload"
+                            onChange={updateImage}
                             required
                             maxLength={2048}
                         />
-                        <span className="create-form-card-label">
-                            Image url
-                        </span>
                     </div>
                     <div className="new-card-input-wrapper">
                         <textarea
@@ -120,7 +135,7 @@ const NewCard = ({ index }) => {
                         alt={title}
                         src={url}
                         onError={e => {
-                            e.target.src = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930"
+                            e.target.src = "https://artest-project.s3.amazonaws.com/No_Image_Available.jpg"
                             e.onerror = null
                         }}
                     ></img>

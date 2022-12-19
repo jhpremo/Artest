@@ -130,7 +130,7 @@ const SetPage = () => {
                                 alt={displayLst[currentCard].title}
                                 src={displayLst[currentCard].imageUrl}
                                 onError={e => {
-                                    e.target.src = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930"
+                                    e.target.src = "https://artest-project.s3.amazonaws.com/No_Image_Available.jpg"
                                     e.onerror = null
                                 }}
                             ></img>}
@@ -171,7 +171,7 @@ const SetPage = () => {
                                         alt={card.title}
                                         src={card.imageUrl}
                                         onError={e => {
-                                            e.target.src = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930"
+                                            e.target.src = "https://artest-project.s3.amazonaws.com/No_Image_Available.jpg"
                                             e.onerror = null
                                         }}
                                     ></img>

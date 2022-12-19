@@ -18,6 +18,8 @@ const EditComp = () => {
     const [workTwoDisplayDate, setWorkTwoDisplayDate] = useState('')
     const [workTwoUrl, setWorkTwoUrl] = useState('')
     const [comparisonText, setComparisonText] = useState('')
+    const [toggleUpload1, setToggleUpload1] = useState(false)
+    const [toggleUpload2, setToggleUpload2] = useState(false)
     const { compId } = useParams()
 
     let comp = useSelector((state) => {
@@ -65,11 +67,11 @@ const EditComp = () => {
         if (!workOneTitle || workOneTitle.length > 75) errorsArr.push(`Work one title must be between 1 and 75 characters`)
         if (!workOneArtist || workOneArtist.length > 75) errorsArr.push(`Work one artist name must be between 1 and 75 characters`)
         if (!workOneDisplayDate || workOneDisplayDate.length > 75) errorsArr.push(`Work one date must be between 1 and 50 characters`)
-        if (!workOneUrl || workOneUrl.length > 2048 || !(workOneUrl.toLowerCase().includes('.jpg') || workOneUrl.toLowerCase().includes('.png'))) errorsArr.push(`Work one image url must be valid url that includes .jpg or .png`)
+        // if (!workOneUrl || workOneUrl.length > 2048 || !(workOneUrl.toLowerCase().includes('.jpg') || workOneUrl.toLowerCase().includes('.png'))) errorsArr.push(`Work one image url must be valid url that includes .jpg or .png`)
         if (!workTwoTitle || workTwoTitle.length > 75) errorsArr.push(`Work two title must be between 1 and 75 characters`)
         if (!workTwoArtist || workTwoArtist.length > 75) errorsArr.push(`Work two artist name must be between 1 and 75 characters`)
         if (!workTwoDisplayDate || workTwoDisplayDate.length > 75) errorsArr.push(`Work two date must be between 1 and 50 characters`)
-        if (!workTwoUrl || workTwoUrl.length > 2048 || !(workTwoUrl.toLowerCase().includes('.jpg') || workTwoUrl.toLowerCase().includes('.png'))) errorsArr.push(`Work two image url must be valid url that includes .jpg or .png`)
+        // if (!workTwoUrl || workTwoUrl.length > 2048 || !(workTwoUrl.toLowerCase().includes('.jpg') || workTwoUrl.toLowerCase().includes('.png'))) errorsArr.push(`Work two image url must be valid url that includes .jpg or .png`)
         if (comparisonText && comparisonText.length > 3000) errorsArr.push(`Comparison essay must be less than 3000 characters`)
         if (errorsArr.length) {
             setErrors(errorsArr)
@@ -104,7 +106,47 @@ const EditComp = () => {
         }
     }
 
+    const updateImage1 = async (e) => {
+        const file = e.target.files[0];
+        if (file !== null) {
+            const formData = new FormData();
+            formData.append("image", file);
+            const res = await fetch('/api/users/images', {
+                method: "POST",
+                body: formData,
+            });
+            if (res.ok) {
+                let awsImage = await res.json();
+                console.log(awsImage.url)
+                setWorkOneUrl(awsImage?.url)
+                setToggleUpload1(false)
+            }
+            else {
+                setWorkOneUrl('')
+            }
+        }
+    }
 
+    const updateImage2 = async (e) => {
+        const file = e.target.files[0];
+        if (file !== null) {
+            const formData = new FormData();
+            formData.append("image", file);
+            const res = await fetch('/api/users/images', {
+                method: "POST",
+                body: formData,
+            });
+            if (res.ok) {
+                let awsImage = await res.json();
+                console.log(awsImage.url)
+                setWorkTwoUrl(awsImage?.url)
+                setToggleUpload2(false)
+            }
+            else {
+                setWorkTwoUrl('')
+            }
+        }
+    }
 
 
     return (
@@ -170,18 +212,16 @@ const EditComp = () => {
                                     Display Date e.g "6th century B.C.E."
                                 </span>
                             </div>
-                            <div className="new-card-input-wrapper">
-                                <input
-                                    type="text"
-                                    className="create-form-card-input"
-                                    value={workOneUrl}
-                                    onChange={(e) => setWorkOneUrl(e.target.value)}
+                            <div className="new-card-input-wrapper file-upload-wrapper">
+                                {toggleUpload1 && <><input
+                                    type="file"
+                                    accept=".png, .jpg, .jpeg"
+                                    className="create-form-card-input file-upload"
+                                    onChange={updateImage1}
                                     required
                                     maxLength={2048}
-                                />
-                                <span className="create-form-card-label">
-                                    Image url
-                                </span>
+                                /><button type="button" className="image-upload-buttons" onClick={() => setToggleUpload1(false)}>Cancel</button> </>}
+                                {!toggleUpload1 && <button className="image-upload-buttons" type="button" onClick={() => setToggleUpload1(true)}>Replace image</button>}
                             </div>
                         </div>
                         <div className='form-cards-list-card-right'>
@@ -190,7 +230,7 @@ const EditComp = () => {
                                 alt={workOneTitle}
                                 src={workOneUrl}
                                 onError={e => {
-                                    e.target.src = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930"
+                                    e.target.src = "https://artest-project.s3.amazonaws.com/No_Image_Available.jpg"
                                     e.onerror = null
                                 }}
                             ></img>
@@ -240,18 +280,16 @@ const EditComp = () => {
                                     Display Date e.g "1st century C.E."
                                 </span>
                             </div>
-                            <div className="new-card-input-wrapper">
-                                <input
-                                    type="text"
-                                    className="create-form-card-input"
-                                    value={workTwoUrl}
-                                    onChange={(e) => setWorkTwoUrl(e.target.value)}
+                            <div className="new-card-input-wrapper file-upload-wrapper">
+                                {toggleUpload2 && <><input
+                                    type="file"
+                                    accept=".png, .jpg, .jpeg"
+                                    className="create-form-card-input file-upload"
+                                    onChange={updateImage2}
                                     required
                                     maxLength={2048}
-                                />
-                                <span className="create-form-card-label">
-                                    Image url
-                                </span>
+                                /><button type="button" className="image-upload-buttons" onClick={() => setToggleUpload2(false)}>Cancel</button> </>}
+                                {!toggleUpload2 && <button className="image-upload-buttons" type="button" onClick={() => setToggleUpload2(true)}>Replace image</button>}
                             </div>
                         </div>
                         <div className='form-cards-list-card-right'>
@@ -260,7 +298,7 @@ const EditComp = () => {
                                 alt={workTwoTitle}
                                 src={workTwoUrl}
                                 onError={e => {
-                                    e.target.src = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930"
+                                    e.target.src = "https://artest-project.s3.amazonaws.com/No_Image_Available.jpg"
                                     e.onerror = null
                                 }}
                             ></img>

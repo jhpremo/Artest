@@ -10,14 +10,14 @@ const CompCard = ({ comp }) => {
                     alt={comp.workOneTitle}
                     id="comp-card-image-left"
                     onError={e => {
-                        e.target.src = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930"
+                        e.target.src = "https://artest-project.s3.amazonaws.com/No_Image_Available.jpg"
                         e.onerror = null
                     }} />
                 <img
                     src={comp.workTwoImageUrl}
                     alt={comp.workTwoTitle}
                     onError={e => {
-                        e.target.src = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930"
+                        e.target.src = "https://artest-project.s3.amazonaws.com/No_Image_Available.jpg"
                         e.onerror = null
                     }} />
                 <div className="comp-card-work-wrapper"></div>

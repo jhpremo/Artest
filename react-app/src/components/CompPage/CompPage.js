@@ -145,7 +145,7 @@ const CompPage = () => {
                                 style={imageCursor}
                                 alt={comp.workOneTitle}
                                 onError={e => {
-                                    e.target.src = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930"
+                                    e.target.src = "https://artest-project.s3.amazonaws.com/No_Image_Available.jpg"
                                     e.onerror = null
                                 }} />
 
@@ -158,7 +158,7 @@ const CompPage = () => {
                         <div className="comp-page-work-border">
                             <img
                                 id="img2"
-                                crossOrigin="anonymous"
+                                // crossOrigin="anonymous"
                                 onClick={(e) => {
                                     e.target.src = comp.workTwoImageUrl
                                     showMarkerArea('img2')
@@ -167,7 +167,7 @@ const CompPage = () => {
                                 style={imageCursor}
                                 alt={comp.workTwoTitle}
                                 onError={e => {
-                                    e.target.src = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930"
+                                    e.target.src = "https://artest-project.s3.amazonaws.com/No_Image_Available.jpg"
                                     e.onerror = null
                                 }}></img>
 

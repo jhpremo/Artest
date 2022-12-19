@@ -10,6 +10,7 @@ const NewCard = ({ index, isLoaded }) => {
     const [url, setUrl] = useState('')
     const [notes, setNotes] = useState('')
     const [disableDelete, setDisableDelete] = useState(false)
+    const [toggleUpload, setToggleUpload] = useState(false)
 
     const cards = useSelector((state) => state.setForm)
 
@@ -43,6 +44,26 @@ const NewCard = ({ index, isLoaded }) => {
         if (cards.length > 2) dispatch(formDeleteCard(index))
     }
 
+    const updateImage = async (e) => {
+        const file = e.target.files[0];
+        if (file !== null) {
+            const formData = new FormData();
+            formData.append("image", file);
+            const res = await fetch('/api/users/images', {
+                method: "POST",
+                body: formData,
+            });
+            if (res.ok) {
+                let awsImage = await res.json();
+                console.log(awsImage.url)
+                setUrl(awsImage?.url)
+                setToggleUpload(false)
+            }
+            else {
+                setUrl('')
+            }
+        }
+    }
 
 
     return (
@@ -89,18 +110,16 @@ const NewCard = ({ index, isLoaded }) => {
                             Display Date e.g "6th century B.C.E."
                         </span>
                     </div>
-                    <div className="new-card-input-wrapper">
-                        <input
-                            type="text"
-                            className="create-form-card-input"
-                            value={url}
-                            onChange={(e) => setUrl(e.target.value)}
+                    <div className="new-card-input-wrapper file-upload-wrapper">
+                        {toggleUpload && <><input
+                            type="file"
+                            accept=".png, .jpg, .jpeg"
+                            className="create-form-card-input file-upload"
+                            onChange={updateImage}
                             required
                             maxLength={2048}
-                        />
-                        <span className="create-form-card-label">
-                            Image url
-                        </span>
+                        /><button type="button" className="image-upload-buttons" onClick={() => setToggleUpload(false)}>Cancel</button> </>}
+                        {!toggleUpload && <button className="image-upload-buttons" type="button" onClick={() => setToggleUpload(true)}>Replace image</button>}
                     </div>
                     <div className="new-card-input-wrapper">
                         <textarea
@@ -121,13 +140,13 @@ const NewCard = ({ index, isLoaded }) => {
                         alt={title}
                         src={url}
                         onError={e => {
-                            e.target.src = "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg?20200913095930"
+                            e.target.src = "https://artest-project.s3.amazonaws.com/No_Image_Available.jpg"
                             e.onerror = null
                         }}
                     ></img>
                 </div>
             </div>
-        </div>
+        </div >
     )
 }
 
