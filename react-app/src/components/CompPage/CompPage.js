@@ -36,8 +36,8 @@ const CompPage = () => {
             //     console.log('close')
             // })
             markerArea.show()
-            if (id === "img1" && comp.workOneMarkerObj && comp.workOneMarkerObj != 'null') markerArea.restoreState(JSON.parse(comp.workOneMarkerObj))
-            if (id === "img2" && comp.workTwoMarkerObj && comp.workTwoMarkerObj != 'null') markerArea.restoreState(JSON.parse(comp.workTwoMarkerObj))
+            if (id === "img1" && comp.workOneMarkerObj && comp.workOneMarkerObj !== 'null') markerArea.restoreState(JSON.parse(comp.workOneMarkerObj))
+            if (id === "img2" && comp.workTwoMarkerObj && comp.workTwoMarkerObj !== 'null') markerArea.restoreState(JSON.parse(comp.workTwoMarkerObj))
         }
     }
     // when image annotation is closed restores previous image state
@@ -158,7 +158,7 @@ const CompPage = () => {
                         <div className="comp-page-work-border">
                             <img
                                 id="img2"
-                                // crossOrigin="anonymous"
+                                crossOrigin="anonymous"
                                 onClick={(e) => {
                                     e.target.src = comp.workTwoImageUrl
                                     showMarkerArea('img2')

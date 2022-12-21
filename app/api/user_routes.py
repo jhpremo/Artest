@@ -30,7 +30,6 @@ def user(id):
 @user_routes.post('/images')
 @login_required
 def image_upload():
-    print('imageeeeeeeeeeeeeeees')
     if "image" not in request.files:
         return {"errors": "image required"}, 400
 

@@ -16,7 +16,7 @@ const SignUpForm = ({ setToggleSignup }) => {
     let errorArr = []
     if (!username || username.length > 40) errorArr.push('username must be between 1 and 40 characters')
     if (!email || !email.includes('@') || !email.includes('.')) errorArr.push('email address must be valid')
-    if (password != repeatPassword) errorArr.push('passwords must match')
+    if (password !== repeatPassword) errorArr.push('passwords must match')
 
     setErrors(errorArr)
 

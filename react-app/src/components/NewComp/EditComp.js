@@ -52,7 +52,7 @@ const EditComp = () => {
     const user = useSelector((state) => state.session.user)
     console.log(isLoaded)
     useEffect(() => {
-        if (isLoaded && (!user || user?.id != comp?.userId)) {
+        if (isLoaded && (!user || user?.id !== comp?.userId)) {
             history.push('/')
             return
         }

@@ -36,7 +36,7 @@ const EditSetPage = () => {
 
     const user = useSelector((state) => state.session.user)
     useEffect(() => {
-        if (isLoaded && (!user || user?.id != set?.userId)) {
+        if (isLoaded && (!user || user?.id !== set?.userId)) {
             history.push('/')
             return
         }
