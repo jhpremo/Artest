@@ -242,7 +242,7 @@
     margin: 0px;
     padding: 0px;
     font-size: 25px;
-    width: 80%;
+    width: 70%;
     word-wrap: break-word;
 }
 
@@ -256,8 +256,21 @@
     padding: 8px 15px;
     margin-left: 10px;
     cursor: pointer;
+    box-sizing: border-box;
+    height: 30px;
+}
+
+.set-page-top-bar-buttons {
+    width: 30%;
+    display: flex;
+    justify-content: right;
+    position: relative;
 }
 
 .set-page-top-bar-buttons>button:hover {
     background-color: rgb(54, 69, 203);
+}
+
+#set-page-about {
+    margin-right: 0px;
 }

@@ -120,3 +120,14 @@
 .show-annotations:hover {
     background-color: rgb(246, 247, 251);
 }
+
+#about-comp-drop-down {
+    right: 0px;
+}
+
+.about-header-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}

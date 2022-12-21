@@ -43,7 +43,7 @@ const HomePage = () => {
             {isLoaded && <div className='homepage-wrapper'>
                 <div className='homepage-header-wrapper'>
                     <h2>Featured sets</h2>
-                    <button onClick={() => setToggleAbout(!toggleAbout)} className='about-this-page-button'>About</button>
+                    <button onClick={() => setToggleAbout(!toggleAbout)} className='about-this-page-button'>about</button>
                     {toggleAbout && <div className='about-drop-down'>
                         <h5>Welcome to Artest an Art History Flash Card and Study Site</h5>
                         <div className='about-section-wrapper'>

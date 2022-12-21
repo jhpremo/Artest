@@ -221,3 +221,13 @@
     box-sizing: border-box;
     /* text-align: center; */
 }
+
+.about-section-wrapper>p>ul {
+    margin: 0px;
+    padding: 0px;
+}
+
+.about-section-wrapper>p>ul>li {
+    margin: 0px;
+    padding: 3px 0px;
+}

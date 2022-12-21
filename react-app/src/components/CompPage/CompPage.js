@@ -17,6 +17,7 @@ const CompPage = () => {
     const { compId } = useParams()
     const [showAnnotations, setShowAnnotations] = useState(false)
     const [imageCursor, setImageCursor] = useState({ cursor: 'default' })
+    const [toggleAbout, setToggleAbout] = useState(false)
     const [triggerHandleClose, setTriggerHandleClose] = useState(false)
 
     const showMarkerArea = (id) => {
@@ -127,10 +128,39 @@ const CompPage = () => {
     }
 
 
+    useEffect(() => {
+        if (!toggleAbout) return;
+
+        const closeAbout = () => {
+            setToggleAbout(false);
+        };
+
+        document.addEventListener('click', closeAbout);
+
+        return () => document.removeEventListener("click", closeAbout);
+    }, [toggleAbout]);
 
     return (
         <>
             {isLoaded && <div className="comp-page-wrapper">
+                <div className="about-header-wrapper">
+                    <button onClick={() => setToggleAbout(!toggleAbout)} id='set-page-about' className='about-this-page-button'>about</button>
+                    {toggleAbout && <div className='about-drop-down' id="about-comp-drop-down">
+                        <h5>Welcome to Artest an Art History Flash Card and Study Site</h5>
+                        <div className='about-section-wrapper'>
+                            <h6>Comparisons</h6>
+                            <p>Comparisons are a study tool for writing and posting essays comparing two works of art. A user chooses two works of art and writes an essay comparing and contrasting them. The creator of a comparison can use image annotations for creating and displaying visual notes.</p>
+                        </div>
+                        <div className='about-section-wrapper'>
+                            <h6>Comparison Page</h6>
+                            <p><ul>
+                                <li>Clicking the show annotations button turns on image annotations</li>
+                                <li>Clicking the hide annotations button turns off image annotations</li>
+                                <li>While annotations are showing the creator of the comparison can click either image to edit image annotations </li>
+                            </ul></p>
+                        </div>
+                    </div>}
+                </div>
                 <div className="comp-page-top">
                     <div className="comp-page-work-wrapper" id="work-one">
                         <div className="comp-page-work-border">

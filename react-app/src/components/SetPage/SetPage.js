@@ -14,6 +14,7 @@ const SetPage = () => {
     const [toggleShuffle, setToggleShuffle] = useState(false)
     const [toggleDefaultSide, setToggleDefaultSide] = useState(true)
     const [toggleList, setToggleList] = useState(true)
+    const [toggleAbout, setToggleAbout] = useState(false)
     const [currentCard, setCurrentCard] = useState(0)
     const [shuffleId, setShuffleId] = useState("n/a")
     const [defaultId, setDefaultId] = useState("active-side-button")
@@ -108,15 +109,47 @@ const SetPage = () => {
         history.push(`/sets/${set.id}/edit`)
     }
 
+    useEffect(() => {
+        if (!toggleAbout) return;
+
+        const closeAbout = () => {
+            setToggleAbout(false);
+        };
+
+        document.addEventListener('click', closeAbout);
+
+        return () => document.removeEventListener("click", closeAbout);
+    }, [toggleAbout]);
+
+
     return (
         <>
             {isLoaded && <div className="set-page-wrapper">
                 <div className="set-page-top-bar">
                     <h1>{set.title}</h1>
-                    {user?.id === set.userId && <div className="set-page-top-bar-buttons">
-                        <button onClick={handleEditSet}>edit</button>
-                        <button onClick={handleDeleteSet}>delete</button>
-                    </div>}
+                    <div className="set-page-top-bar-buttons">
+                        {user?.id === set.userId && <button onClick={handleEditSet}>edit</button>}
+                        {user?.id === set.userId && <button onClick={handleDeleteSet}>delete</button>}
+                        <button onClick={() => setToggleAbout(!toggleAbout)} id='set-page-about' className='about-this-page-button'>about</button>
+                        {toggleAbout && <div className='about-drop-down'>
+                            <h5>Welcome to Artest an Art History Flash Card and Study Site</h5>
+                            <div className='about-section-wrapper'>
+                                <h6>Sets</h6>
+                                <p>Sets are collections of flash cards where one side features a work of art and the other shows the artist, year, and title for the work of art. The creator of a set can also write and display notes on each card.</p>
+                            </div>
+                            <div className='about-section-wrapper'>
+                                <h6>Set Page</h6>
+                                <p><ul>
+                                    <li>Clicking on the card will flip the card</li>
+                                    <li><i className="fa-solid fa-angle-right" /> will move to next card in set</li>
+                                    <li><i className="fa-solid fa-angle-left" /> will move to previous card in set</li>
+                                    <li><i className="fa-solid fa-list-ul" /> will toggle visibility for the card list</li>
+                                    <li><i className="fa-solid fa-shuffle" /> will toggle randomized card order</li>
+                                    <li><i className="fa-regular fa-image" /> will toggle the starting card side </li>
+                                </ul></p>
+                            </div>
+                        </div>}
+                    </div>
                 </div>
                 {displayLst.length > 0 && <>
                     <div className="progress-bar">
