@@ -32,6 +32,7 @@ Artest is a art history flashcard and study website inspired by Quizlet. Artest 
 * CSS
 * Render
 * PostgreSQL
+* AWS S3
 
 
 ## Landing Page
